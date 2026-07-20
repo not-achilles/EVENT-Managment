@@ -305,21 +305,15 @@ function initContactForm() {
         // 2. Submit to Google Sheets Web App URL if configured
         if (GOOGLE_SHEETS_WEB_APP_URL) {
             try {
-                const params = new URLSearchParams();
-                params.append('id', newInquiry.id);
-                params.append('timestamp', newInquiry.timestamp);
-                params.append('name', newInquiry.name);
-                params.append('email', newInquiry.email);
-                params.append('phone', newInquiry.phone);
-                params.append('eventType', newInquiry.eventType);
-                params.append('message', newInquiry.message);
-
+                // Send as text/plain JSON payload (bypass CORS preflight & works across all Apps Script types)
+                const payload = JSON.stringify(newInquiry);
+                
                 await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'text/plain;charset=utf-8'
                     },
-                    body: params.toString(),
+                    body: payload,
                     mode: 'no-cors'
                 });
                 console.log('📊 Inquiry successfully sent to Google Sheet!');
