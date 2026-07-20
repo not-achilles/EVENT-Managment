@@ -254,17 +254,78 @@ function initFaqAccordion() {
     });
 }
 
-/* Contact Form */
+/* Contact Form & Inquiries Persistence */
+const INQUIRIES_KEY = 'aura_gold_inquiries';
+
+function saveInquiry(inquiry) {
+    const existing = JSON.parse(localStorage.getItem(INQUIRIES_KEY) || '[]');
+    existing.unshift(inquiry);
+    localStorage.setItem(INQUIRIES_KEY, JSON.stringify(existing));
+}
+
+function getInquiries() {
+    return JSON.parse(localStorage.getItem(INQUIRIES_KEY) || '[]');
+}
+
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('✨ Thank you for reaching out to AURA & GOLD!\nOur Executive Concierge team will review your event vision and contact you within 24 hours.');
+
+        const name = document.getElementById('c-name').value;
+        const email = document.getElementById('c-email').value;
+        const phone = document.getElementById('c-phone').value;
+        const eventType = document.getElementById('c-type').value;
+        const message = document.getElementById('c-message').value;
+
+        const newInquiry = {
+            id: 'INQ-' + Math.random().toString(36).substring(2, 9).toUpperCase(),
+            timestamp: new Date().toLocaleString(),
+            name,
+            email,
+            phone,
+            eventType,
+            message
+        };
+
+        // Save to browser LocalStorage persistently
+        saveInquiry(newInquiry);
+        console.log('✅ Form submission saved to LocalStorage:', newInquiry);
+
+        alert(`✨ Thank you, ${name}!\n\nYour event consultation request for "${eventType}" has been successfully logged & saved.\nOur Executive Concierge team will review your details and reach out to ${email} within 24 hours.`);
         form.reset();
     });
 }
+
+// Make inquiries helper functions globally accessible in window for DevTools & Admin Modal
+window.getAuraGoldInquiries = getInquiries;
+window.exportInquiriesCSV = function() {
+    const inquiries = getInquiries();
+    if (inquiries.length === 0) {
+        alert('No inquiries saved yet.');
+        return;
+    }
+    const headers = ['Inquiry ID', 'Date & Time', 'Full Name', 'Email', 'Phone', 'Event Type', 'Message'];
+    const rows = inquiries.map(i => [
+        i.id,
+        `"${i.timestamp}"`,
+        `"${i.name}"`,
+        `"${i.email}"`,
+        `"${i.phone}"`,
+        `"${i.eventType}"`,
+        `"${(i.message || '').replace(/"/g, '""')}"`
+    ]);
+    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `aura_gold_inquiries_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
 
 /* Mobile Nav Drawer */
 function initMobileNav() {
