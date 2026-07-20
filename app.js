@@ -305,22 +305,23 @@ function initContactForm() {
         // 2. Submit to Google Sheets Web App URL if configured
         if (GOOGLE_SHEETS_WEB_APP_URL) {
             try {
-                // Send as URLSearchParams formatted text to guarantee e.parameter populates in Apps Script
-                const params = new URLSearchParams();
-                params.append('id', newInquiry.id);
-                params.append('timestamp', newInquiry.timestamp);
-                params.append('name', newInquiry.name);
-                params.append('email', newInquiry.email);
-                params.append('phone', newInquiry.phone);
-                params.append('eventType', newInquiry.eventType);
-                params.append('message', newInquiry.message);
+                // Prepare clean inquiry object with safe phone string formatting to prevent Google Sheet formula errors
+                const payloadData = {
+                    id: newInquiry.id,
+                    timestamp: newInquiry.timestamp,
+                    name: newInquiry.name,
+                    email: newInquiry.email,
+                    phone: "'" + newInquiry.phone,
+                    eventType: newInquiry.eventType,
+                    message: newInquiry.message
+                };
 
                 await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'text/plain;charset=utf-8'
                     },
-                    body: params.toString(),
+                    body: JSON.stringify(payloadData),
                     mode: 'no-cors'
                 });
                 console.log('📊 Inquiry successfully sent to Google Sheet!');
