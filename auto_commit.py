@@ -90,10 +90,16 @@ def do_commit_and_push(custom_message=None, branch="main"):
     code, out, err = run_git(["push", "-u", "origin", branch])
     if code != 0:
         print(f"⚠️ Push notice: {err or out}")
-        if "up-to-date" in err or "up-to-date" in out:
+        if "could not read Username" in err or "Authentication failed" in err or "dialog" in err:
+            print("\n🔐 GITHUB AUTHENTICATION NEEDED:")
+            print("1. Open your terminal in this directory and run: git push -u origin main")
+            print("2. Or set a Personal Access Token (PAT):")
+            print("   git remote set-url origin https://<YOUR_GITHUB_TOKEN>@github.com/not-achilles/EVENT-Managment.git")
+            print("3. Or use SSH:")
+            print("   git remote set-url origin git@github.com:not-achilles/EVENT-Managment.git\n")
+        elif "up-to-date" in err or "up-to-date" in out:
             print("✅ Remote is up to date.")
             return True
-        print("💡 If authentication is required, make sure your GitHub credentials / SSH keys are set up.")
         return True  # Commit succeeded locally
     else:
         print("🎉 Successfully pushed to GitHub!")
