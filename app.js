@@ -258,7 +258,7 @@ function initFaqAccordion() {
 const INQUIRIES_KEY = 'gracengather_inquiries';
 
 // Live Deployed Web App URL for Grace N Gather Events
-const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw1hxAwllyd7GsP5bGR_em396Wkr4e3lR39ZwIWPIuUq_opahM7IrR_1aSIxPV785JG/exec';
+const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbziWlPzEggdDCDMEtXtgn0z1m6QPTEUxaWEbXyZrJEXbbBsaJThMbmRUWKOl19Wsssw/exec';
 localStorage.setItem('gracengather_google_sheet_url', GOOGLE_SHEETS_WEB_APP_URL);
 
 function saveInquiry(inquiry) {
