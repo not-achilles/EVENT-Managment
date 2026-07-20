@@ -1,6 +1,6 @@
-# EVENT-Managment
+# Grace N Gather Events 🪷
 
-Modern Event Management System with automated Git auto-commit watcher and instant sync script.
+Premier Luxury Indian Event Management & Production Website.
 
 ## 📂 Project Location
 `C:\Users\anmol\.gemini\antigravity\scratch\EVENT-Managment`
@@ -8,6 +8,14 @@ Modern Event Management System with automated Git auto-commit watcher and instan
 ## 🔗 Connected Git Repository
 - **Remote**: `https://github.com/not-achilles/EVENT-Managment.git`
 - **Branch**: `main`
+
+---
+
+## 🪷 Brand Profile: Grace N Gather Events
+- **Headquarters**: Worli Sea Face, Penthouse Suite 18, Mumbai, Maharashtra 400018, India
+- **Concierge Line**: +91 98200 55599
+- **Email**: concierge@gracengather.com
+- **Specializations**: Royal Destination Weddings (Rajasthan & Goa), Sangeet & Mehendi Styling, Mandap Stage Architecture, Corporate Leadership Galas, and Live Artist Booking.
 
 ---
 
@@ -20,29 +28,16 @@ Monitors file changes every 30 seconds, creates timestamped commit messages, and
 ```bash
 python auto_commit.py --watch
 ```
-*(Or double-click `auto_commit.bat` on Windows)*
 
 ### 2. Instant One-Shot Commit & Push
 Stage, commit, and push changes immediately:
 ```bash
 python auto_commit.py --once
 ```
-Or with a custom message:
-```bash
-python auto_commit.py -m "Add new event filter feature"
-```
-*(Or double-click `commit_now.bat` on Windows)*
-
-### 3. Check Git Status
-```bash
-python auto_commit.py --status
-```
 
 ---
 
-## 🌐 Web Application Overview
-Open `index.html` in your browser to view the Event Management Dashboard.
-- **Event Creation & Management**: Add, search, filter, and sort events.
-- **RSVP & Ticket Booking**: Real-time capacity calculation & ticket generation.
-- **Persistent Storage**: Saves all state in browser local storage.
-- **Theme Support**: Dark mode & light mode toggle.
+## 📄 Multi-Page Website Overview
+- [index.html](file:///C:/Users/anmol/.gemini/antigravity/scratch/EVENT-Managment/index.html) – Home page with Hero slideshow, About, Featured Services & Portfolio teasers, Client reviews, FAQs, and Consultation form.
+- [services.html](file:///C:/Users/anmol/.gemini/antigravity/scratch/EVENT-Managment/services.html) – Dedicated 16 Luxury Services catalog page with category tabs (*Weddings, Corporate Galas, Design & Stage, Concerts & Shows, Hospitality*).
+- [gallery.html](file:///C:/Users/anmol/.gemini/antigravity/scratch/EVENT-Managment/gallery.html) – Dedicated Portfolio Gallery page with category tabs and full-screen Lightbox modal.

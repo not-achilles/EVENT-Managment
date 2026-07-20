@@ -1,25 +1,25 @@
 /* ==========================================================================
-   AURA & GOLD - LUXURY EVENT MANAGEMENT JAVASCRIPT ENGINE
+   GRACE N GATHER EVENTS - LUXURY INDIAN EVENT MANAGEMENT ENGINE
    ========================================================================== */
 
-// Testimonials Dataset
+// Indian Client Reviews Dataset
 const REVIEWS = [
     {
-        quote: "AURA & GOLD transformed our destination wedding in Lake Como into an absolute fairytale. Every single guest was spellbound by the floral installations and seamless coordination.",
-        name: "Duchess Victoria & Alexander Sterling",
-        event: "Destination Wedding, Italy",
+        quote: "Grace N Gather Events turned our destination wedding at Udaipur City Palace into pure royalty! The floral Mandap, Sangeet staging, and hospitality left every guest spellbound.",
+        name: "Ananya Singhania & Rohan Kapoor",
+        event: "Royal Destination Wedding, Udaipur",
         avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
     },
     {
-        quote: "The team executed our annual global tech summit for 2,500 executives without a single hiccup. Their stage design and VIP hospitality set a new gold standard for our company.",
-        name: "Marcus Vance",
-        event: "CEO, Nexa Global Enterprises",
+        quote: "Their team executed our annual corporate leadership summit in Mumbai for 2,000 delegates seamlessly. The stage lighting and VIP hospitality were world-class.",
+        name: "Vikramaditya Roy",
+        event: "Managing Director, Apex Tech India",
         avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
     },
     {
-        quote: "From artist contracting to concert sound staging, AURA & GOLD delivered unmatched luxury and precision. Their attention to detail is truly world-class.",
-        name: "Elena Rostova",
-        event: "Founder, Harmony Music Festival",
+        quote: "From Bollywood artist management to beachfront candlelit Sangeet decor in Goa, Grace N Gather handled every detail with perfection and warmth.",
+        name: "Meera & Siddharth Deshmukh",
+        event: "Sangeet & Wedding Gala, Goa",
         avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
     }
 ];
@@ -255,7 +255,7 @@ function initFaqAccordion() {
 }
 
 /* Contact Form & Inquiries Persistence */
-const INQUIRIES_KEY = 'aura_gold_inquiries';
+const INQUIRIES_KEY = 'gracengather_inquiries';
 
 function saveInquiry(inquiry) {
     const existing = JSON.parse(localStorage.getItem(INQUIRIES_KEY) || '[]');
@@ -281,7 +281,7 @@ function initContactForm() {
         const message = document.getElementById('c-message').value;
 
         const newInquiry = {
-            id: 'INQ-' + Math.random().toString(36).substring(2, 9).toUpperCase(),
+            id: 'GNG-' + Math.random().toString(36).substring(2, 9).toUpperCase(),
             timestamp: new Date().toLocaleString(),
             name,
             email,
@@ -292,16 +292,16 @@ function initContactForm() {
 
         // Save to browser LocalStorage persistently
         saveInquiry(newInquiry);
-        console.log('✅ Form submission saved to LocalStorage:', newInquiry);
+        console.log('✅ Grace N Gather inquiry saved:', newInquiry);
 
-        alert(`✨ Thank you, ${name}!\n\nYour event consultation request for "${eventType}" has been successfully logged & saved.\nOur Executive Concierge team will review your details and reach out to ${email} within 24 hours.`);
+        alert(`🪷 Thank you, ${name}!\n\nYour event consultation request for "${eventType}" has been successfully logged with Grace N Gather Events.\nOur Executive Concierge team will review your details and reach out to ${phone} / ${email} within 24 hours.`);
         form.reset();
     });
 }
 
-// Make inquiries helper functions globally accessible in window for DevTools & Admin Modal
-window.getAuraGoldInquiries = getInquiries;
-window.exportInquiriesCSV = function() {
+// Make inquiries helper functions globally accessible in window for DevTools
+window.getGraceNGatherInquiries = getInquiries;
+window.exportGraceNGatherCSV = function() {
     const inquiries = getInquiries();
     if (inquiries.length === 0) {
         alert('No inquiries saved yet.');
@@ -321,7 +321,7 @@ window.exportInquiriesCSV = function() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `aura_gold_inquiries_${Date.now()}.csv`);
+    link.setAttribute("download", `gracengather_inquiries_${Date.now()}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
