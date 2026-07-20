@@ -304,18 +304,21 @@ function initContactForm() {
         // 2. Submit to Google Sheets Web App URL if configured
         if (GOOGLE_SHEETS_WEB_APP_URL) {
             try {
-                const formData = new FormData();
-                formData.append('id', newInquiry.id);
-                formData.append('timestamp', newInquiry.timestamp);
-                formData.append('name', newInquiry.name);
-                formData.append('email', newInquiry.email);
-                formData.append('phone', newInquiry.phone);
-                formData.append('eventType', newInquiry.eventType);
-                formData.append('message', newInquiry.message);
+                const params = new URLSearchParams();
+                params.append('id', newInquiry.id);
+                params.append('timestamp', newInquiry.timestamp);
+                params.append('name', newInquiry.name);
+                params.append('email', newInquiry.email);
+                params.append('phone', newInquiry.phone);
+                params.append('eventType', newInquiry.eventType);
+                params.append('message', newInquiry.message);
 
                 await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
                     method: 'POST',
-                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: params.toString(),
                     mode: 'no-cors'
                 });
                 console.log('📊 Inquiry successfully sent to Google Sheet!');
