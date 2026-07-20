@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | AURA & GOLD Portfolio</title>
+    <meta name="description" content="Explore our luxury portfolio gallery of high-profile weddings, corporate galas, stage lighting, and exclusive event decor.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- Custom Cursor (Desktop Only) -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-follower" id="cursor-follower"></div>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="brand-symbol">❖</span>
+                <div class="brand-name">AURA <span>&</span> GOLD</div>
+            </a>
+
+            <nav class="nav-menu">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                    <li><a href="index.html#reviews" class="nav-link">Client Reviews</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="index.html#contact" class="btn btn-primary">Book Your Event</a>
+                <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Inner Page Header -->
+    <section class="section-padding text-center" style="background: linear-gradient(180deg, #08080A 0%, var(--bg-primary) 100%); padding-top: 10rem; padding-bottom: 4rem;">
+        <div class="container">
+            <span class="section-tag">Curated Portfolio</span>
+            <h1>Moments Of <span class="gold-text">Perfection</span></h1>
+            <p style="color: var(--text-muted); max-width: 650px; margin: 1rem auto 0 auto; font-size: 1.1rem;">
+                Browse through our gallery of royal destination weddings, executive corporate galas, architectural stage setups, and opulent decor installations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section-padding" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="gallery-filter" style="margin-bottom: 3rem;">
+                <button class="filter-btn active" data-gallery-filter="all">All Masterpieces</button>
+                <button class="filter-btn" data-gallery-filter="weddings">Weddings</button>
+                <button class="filter-btn" data-gallery-filter="corporate">Corporate Galas</button>
+                <button class="filter-btn" data-gallery-filter="decor">Luxury Decor</button>
+                <button class="filter-btn" data-gallery-filter="concerts">Concerts & Shows</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-page-container">
+                <!-- Gallery masonry cards rendered dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img src="" alt="Enlarged gallery view" class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Floating WhatsApp & Back to Top -->
+    <div class="floating-actions">
+        <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+        <a href="https://wa.me/18005559090" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">💬</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo">
+                        <span class="brand-symbol">❖</span>
+                        <div class="brand-name">AURA <span>&</span> GOLD</div>
+                    </a>
+                    <p>World-class luxury event planning, custom stage design, and flawless production for extraordinary moments.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="gallery.html">Portfolio</a></li>
+                        <li><a href="index.html#reviews">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Luxury Weddings</a></li>
+                        <li><a href="services.html">Corporate Galas</a></li>
+                        <li><a href="services.html">Stage & Lighting</a></li>
+                        <li><a href="services.html">Artist Booking</a></li>
+                        <li><a href="services.html">Catering Coordination</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#contact">Instagram</a></li>
+                        <li><a href="index.html#contact">LinkedIn</a></li>
+                        <li><a href="index.html#contact">Pinterest</a></li>
+                        <li><a href="index.html#contact">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 AURA & GOLD Event Production. All Rights Reserved.</div>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="index.html" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                    <a href="index.html" style="color: inherit; text-decoration: none;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -25,17 +25,17 @@
     <!-- Sticky Navigation -->
     <header class="navbar" id="navbar">
         <div class="container nav-container">
-            <a href="#home" class="brand-logo">
+            <a href="index.html" class="brand-logo">
                 <span class="brand-symbol">❖</span>
                 <div class="brand-name">AURA <span>&</span> GOLD</div>
             </a>
 
             <nav class="nav-menu">
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
                     <li><a href="#reviews" class="nav-link">Client Reviews</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -64,7 +64,7 @@
             
             <div class="hero-cta-group">
                 <a href="#contact" class="btn btn-primary">Book Consultation ✦</a>
-                <a href="#gallery" class="btn btn-outline">Explore Our Work</a>
+                <a href="gallery.html" class="btn btn-outline">Explore Our Work</a>
             </div>
         </div>
 
@@ -113,40 +113,40 @@
         </div>
     </section>
 
-    <!-- Services Section (16 Luxury Services) -->
+    <!-- Featured Services Section (Teaser to services.html) -->
     <section id="services" class="section-padding" style="background: var(--bg-surface);">
         <div class="container">
             <div class="section-header text-center">
                 <span class="section-tag">Bespoke Offerings</span>
-                <h2>Our <span class="gold-text">Luxury Services</span></h2>
-                <p>From intimate gatherings to grand international spectacles, we provide full-spectrum event excellence.</p>
+                <h2>Featured <span class="gold-text">Luxury Services</span></h2>
+                <p>Explore highlights of our 16 specialized event divisions or visit our dedicated Services page.</p>
             </div>
 
-            <div class="services-grid" id="services-container">
-                <!-- 16 Luxury Services rendered dynamically -->
+            <div class="services-grid" id="home-services-container">
+                <!-- Top 6 featured services rendered via JS -->
+            </div>
+
+            <div class="text-center" style="margin-top: 3.5rem;">
+                <a href="services.html" class="btn btn-primary">Explore All 16 Luxury Services ➔</a>
             </div>
         </div>
     </section>
 
-    <!-- Gallery / Portfolio Section -->
+    <!-- Featured Gallery Section (Teaser to gallery.html) -->
     <section id="gallery" class="section-padding">
         <div class="container">
             <div class="section-header text-center">
                 <span class="section-tag">Curated Portfolio</span>
                 <h2>Moments Of <span class="gold-text">Perfection</span></h2>
-                <p>Explore our recent luxury weddings, high-society galas, stage designs, and grand celebrations.</p>
+                <p>Take a glance at our recent luxury productions or view the complete portfolio gallery.</p>
             </div>
 
-            <div class="gallery-filter">
-                <button class="filter-btn active" data-filter="all">All Masterpieces</button>
-                <button class="filter-btn" data-filter="weddings">Weddings</button>
-                <button class="filter-btn" data-filter="corporate">Corporate Galas</button>
-                <button class="filter-btn" data-filter="decor">Luxury Decor</button>
-                <button class="filter-btn" data-filter="concerts">Concerts & Shows</button>
+            <div class="gallery-grid" id="home-gallery-container">
+                <!-- Featured gallery cards rendered via JS -->
             </div>
 
-            <div class="gallery-grid" id="gallery-container">
-                <!-- Gallery masonry items rendered dynamically -->
+            <div class="text-center" style="margin-top: 3.5rem;">
+                <a href="gallery.html" class="btn btn-outline" style="border-color: var(--accent-gold); color: var(--accent-gold-light);">View Full Portfolio Gallery ➔</a>
             </div>
         </div>
     </section>
@@ -349,7 +349,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#home" class="brand-logo">
+                    <a href="index.html" class="brand-logo">
                         <span class="brand-symbol">❖</span>
                         <div class="brand-name">AURA <span>&</span> GOLD</div>
                     </a>
@@ -359,10 +359,10 @@
                 <div>
                     <h4 class="footer-title">Navigation</h4>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Our Services</a></li>
-                        <li><a href="#gallery">Portfolio</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="gallery.html">Portfolio</a></li>
                         <li><a href="#reviews">Reviews</a></li>
                     </ul>
                 </div>
@@ -370,11 +370,11 @@
                 <div>
                     <h4 class="footer-title">Services</h4>
                     <ul class="footer-links">
-                        <li><a href="#services">Luxury Weddings</a></li>
-                        <li><a href="#services">Corporate Galas</a></li>
-                        <li><a href="#services">Stage & Lighting</a></li>
-                        <li><a href="#services">Artist Booking</a></li>
-                        <li><a href="#services">Catering Coordination</a></li>
+                        <li><a href="services.html">Luxury Weddings</a></li>
+                        <li><a href="services.html">Corporate Galas</a></li>
+                        <li><a href="services.html">Stage & Lighting</a></li>
+                        <li><a href="services.html">Artist Booking</a></li>
+                        <li><a href="services.html">Catering Coordination</a></li>
                     </ul>
                 </div>
 
@@ -392,8 +392,8 @@
             <div class="footer-bottom">
                 <div>&copy; 2026 AURA & GOLD Event Production. All Rights Reserved.</div>
                 <div style="display: flex; gap: 1.5rem;">
-                    <a href="#home" style="color: inherit; text-decoration: none;">Privacy Policy</a>
-                    <a href="#home" style="color: inherit; text-decoration: none;">Terms of Service</a>
+                    <a href="index.html" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                    <a href="index.html" style="color: inherit; text-decoration: none;">Terms of Service</a>
                 </div>
             </div>
         </div>

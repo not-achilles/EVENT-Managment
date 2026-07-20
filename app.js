@@ -77,28 +77,28 @@ const SERVICES = [
     {
         id: 'service-11',
         title: 'Photography & Videography',
-        category: 'Media',
+        category: 'Design',
         image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80',
         desc: 'Award-winning cinematic videography, 4K drone aerial shots, and editorial photojournalism capturing every emotion.'
     },
     {
         id: 'service-12',
         title: 'Entertainment Management',
-        category: 'Entertainment',
+        category: 'Concerts',
         image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
         desc: 'Curated lineups of international orchestra ensembles, aerial acrobats, illusionists, and celebrity performers.'
     },
     {
         id: 'service-13',
         title: 'Artist Management',
-        category: 'Entertainment',
+        category: 'Concerts',
         image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
         desc: 'Contract negotiation, backstage greenroom logistics, security detail, and liaison for top-tier musical acts.'
     },
     {
         id: 'service-14',
         title: 'Sound & Lighting',
-        category: 'Production',
+        category: 'Design',
         image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80',
         desc: 'Concert-grade line array acoustic systems, intelligent kinetic moving lights, and atmospheric haze FX.'
     },
@@ -155,6 +155,18 @@ const GALLERY = [
         title: 'Luxury Brand Launch Event',
         category: 'corporate',
         image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=85'
+    },
+    {
+        id: 'g-7',
+        title: 'Beachfront Sunset Marquee',
+        category: 'weddings',
+        image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85'
+    },
+    {
+        id: 'g-8',
+        title: 'Crystal Chandelier Pavilion',
+        category: 'decor',
+        image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=85'
     }
 ];
 
@@ -187,9 +199,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initScrollEffects();
     initHeroSlider();
-    renderServices();
-    renderGallery('all');
-    initGalleryFilters();
+    
+    // Page specific renderers
+    renderHomeServices();
+    renderHomeGallery();
+    renderServicesPage('all');
+    initServicesPageFilters();
+    renderGalleryPage('all');
+    initGalleryPageFilters();
+
     renderTestimonial(0);
     initTestimonialAutoLoop();
     initCountersObserver();
@@ -225,7 +243,7 @@ function initCursor() {
     renderCursor();
 }
 
-/* Scroll Effects: Progress Bar, Navbar, Back to Top */
+/* Scroll Effects */
 function initScrollEffects() {
     const progressBar = document.getElementById('scroll-progress');
     const navbar = document.getElementById('navbar');
@@ -239,10 +257,10 @@ function initScrollEffects() {
         if (progressBar) progressBar.style.width = scrolled + '%';
 
         if (winScroll > 80) {
-            navbar.classList.add('scrolled');
+            if (navbar) navbar.classList.add('scrolled');
             if (backToTop) backToTop.classList.add('visible');
         } else {
-            navbar.classList.remove('scrolled');
+            if (navbar) navbar.classList.remove('scrolled');
             if (backToTop) backToTop.classList.remove('visible');
         }
     });
@@ -267,12 +285,14 @@ function initHeroSlider() {
     }, 5000);
 }
 
-/* Render 16 Services */
-function renderServices() {
-    const container = document.getElementById('services-container');
+/* Render Home Teasers */
+function renderHomeServices() {
+    const container = document.getElementById('home-services-container');
     if (!container) return;
 
-    container.innerHTML = SERVICES.map(s => `
+    // Show top 6 on home page
+    const top6 = SERVICES.slice(0, 6);
+    container.innerHTML = top6.map(s => `
         <div class="service-card">
             <div class="service-img-wrapper">
                 <img src="${s.image}" alt="${s.title}" class="service-img" loading="lazy">
@@ -281,15 +301,66 @@ function renderServices() {
             <div class="service-content">
                 <h3 class="service-title">${s.title}</h3>
                 <p class="service-desc">${s.desc}</p>
-                <a href="#contact" class="service-link">Learn More ✦</a>
+                <a href="services.html" class="service-link">View Details ✦</a>
             </div>
         </div>
     `).join('');
 }
 
-/* Render Gallery & Filters */
-function renderGallery(filter = 'all') {
-    const container = document.getElementById('gallery-container');
+function renderHomeGallery() {
+    const container = document.getElementById('home-gallery-container');
+    if (!container) return;
+
+    const top6 = GALLERY.slice(0, 6);
+    container.innerHTML = top6.map(g => `
+        <div class="gallery-item" onclick="openLightbox('${g.image}')">
+            <img src="${g.image}" alt="${g.title}" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+                <span class="gallery-category">${g.category}</span>
+                <h4 class="gallery-title">${g.title}</h4>
+            </div>
+        </div>
+    `).join('');
+}
+
+/* Render Dedicated Services Page (services.html) */
+function renderServicesPage(filter = 'all') {
+    const container = document.getElementById('services-page-container');
+    if (!container) return;
+
+    const filtered = filter === 'all' 
+        ? SERVICES 
+        : SERVICES.filter(s => s.category === filter);
+
+    container.innerHTML = filtered.map(s => `
+        <div class="service-card">
+            <div class="service-img-wrapper">
+                <img src="${s.image}" alt="${s.title}" class="service-img" loading="lazy">
+                <span class="service-badge">${s.category}</span>
+            </div>
+            <div class="service-content">
+                <h3 class="service-title">${s.title}</h3>
+                <p class="service-desc">${s.desc}</p>
+                <a href="index.html#contact" class="service-link">Book This Service ✦</a>
+            </div>
+        </div>
+    `).join('');
+}
+
+function initServicesPageFilters() {
+    const btns = document.querySelectorAll('[data-service-filter]');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderServicesPage(btn.dataset.serviceFilter);
+        });
+    });
+}
+
+/* Render Dedicated Gallery Page (gallery.html) */
+function renderGalleryPage(filter = 'all') {
+    const container = document.getElementById('gallery-page-container');
     if (!container) return;
 
     const filtered = filter === 'all' 
@@ -307,13 +378,13 @@ function renderGallery(filter = 'all') {
     `).join('');
 }
 
-function initGalleryFilters() {
-    const btns = document.querySelectorAll('.filter-btn');
+function initGalleryPageFilters() {
+    const btns = document.querySelectorAll('[data-gallery-filter]');
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderGallery(btn.dataset.filter);
+            renderGalleryPage(btn.dataset.galleryFilter);
         });
     });
 }
@@ -413,7 +484,7 @@ function initFaqAccordion() {
     });
 }
 
-/* Contact Form Validation & Submission */
+/* Contact Form */
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
@@ -425,7 +496,7 @@ function initContactForm() {
     });
 }
 
-/* Mobile Nav Drawer Toggle */
+/* Mobile Nav Drawer */
 function initMobileNav() {
     const toggle = document.getElementById('mobile-toggle');
     const navLinks = document.getElementById('nav-links');
