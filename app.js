@@ -2,174 +2,6 @@
    AURA & GOLD - LUXURY EVENT MANAGEMENT JAVASCRIPT ENGINE
    ========================================================================== */
 
-// 16 Services Dataset
-const SERVICES = [
-    {
-        id: 'service-1',
-        title: 'Wedding Planning',
-        category: 'Weddings',
-        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
-        desc: 'Bespoke end-to-end wedding design, floral curation, timeline management, and regal celebrations tailored to your personal love story.'
-    },
-    {
-        id: 'service-2',
-        title: 'Destination Weddings',
-        category: 'Weddings',
-        image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80',
-        desc: 'Seamless luxury travel coordination, exotic venue procurement, and multi-day celebrations in Europe, Asia, and tropical paradises.'
-    },
-    {
-        id: 'service-3',
-        title: 'Engagement Ceremonies',
-        category: 'Weddings',
-        image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80',
-        desc: 'Intimate ring ceremonies and lavish engagement galas designed with exquisite champagne styling and candlelit ambience.'
-    },
-    {
-        id: 'service-4',
-        title: 'Birthday Parties',
-        category: 'Private Events',
-        image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80',
-        desc: 'Milestone birthdays, glamorous masquerades, and themed celebrations crafted with custom cocktail bars and live DJs.'
-    },
-    {
-        id: 'service-5',
-        title: 'Corporate Events',
-        category: 'Corporate',
-        image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
-        desc: 'High-profile executive summits, annual banquets, and award galas designed for prestige, brand authority, and flawless flow.'
-    },
-    {
-        id: 'service-6',
-        title: 'Product Launches',
-        category: 'Corporate',
-        image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80',
-        desc: 'High-impact press launches, interactive brand activations, and immersive multimedia reveals for global luxury brands.'
-    },
-    {
-        id: 'service-7',
-        title: 'Live Shows',
-        category: 'Concerts',
-        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
-        desc: 'Spectacular live theatrical performances, laser light shows, and pyrotechnic productions engineered for maximum awe.'
-    },
-    {
-        id: 'service-8',
-        title: 'Concerts',
-        category: 'Concerts',
-        image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
-        desc: 'Arena and festival scale production, crowd management, sound staging, and VIP artist hospitality management.'
-    },
-    {
-        id: 'service-9',
-        title: 'Decor & Styling',
-        category: 'Design',
-        image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80',
-        desc: 'Opulent floral arches, gold crystal chandeliers, velvet draping, and bespoke tabletop design curated by master stylists.'
-    },
-    {
-        id: 'service-10',
-        title: 'Stage Design',
-        category: 'Design',
-        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
-        desc: 'Custom architectural stages, 3D projection mapping, LED video walls, and runway designs built to command attention.'
-    },
-    {
-        id: 'service-11',
-        title: 'Photography & Videography',
-        category: 'Design',
-        image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80',
-        desc: 'Award-winning cinematic videography, 4K drone aerial shots, and editorial photojournalism capturing every emotion.'
-    },
-    {
-        id: 'service-12',
-        title: 'Entertainment Management',
-        category: 'Concerts',
-        image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
-        desc: 'Curated lineups of international orchestra ensembles, aerial acrobats, illusionists, and celebrity performers.'
-    },
-    {
-        id: 'service-13',
-        title: 'Artist Management',
-        category: 'Concerts',
-        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
-        desc: 'Contract negotiation, backstage greenroom logistics, security detail, and liaison for top-tier musical acts.'
-    },
-    {
-        id: 'service-14',
-        title: 'Sound & Lighting',
-        category: 'Design',
-        image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80',
-        desc: 'Concert-grade line array acoustic systems, intelligent kinetic moving lights, and atmospheric haze FX.'
-    },
-    {
-        id: 'service-15',
-        title: 'Catering Coordination',
-        category: 'Hospitality',
-        image: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80',
-        desc: 'Michelin-starred multi-course menus, sommelier wine pairings, molecular mixology, and white-glove table service.'
-    },
-    {
-        id: 'service-16',
-        title: 'Venue Selection',
-        category: 'Hospitality',
-        image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
-        desc: 'Exclusive access to historical castles, private beachfront estates, luxury penthouse ballrooms, and secret garden estates.'
-    }
-];
-
-// Gallery Portfolio Dataset
-const GALLERY = [
-    {
-        id: 'g-1',
-        title: 'Royal Palace Destination Wedding',
-        category: 'weddings',
-        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85'
-    },
-    {
-        id: 'g-2',
-        title: 'Global Tech Leadership Gala',
-        category: 'corporate',
-        image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=85'
-    },
-    {
-        id: 'g-3',
-        title: 'Gold & Floral Stage Architecture',
-        category: 'decor',
-        image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1000&q=85'
-    },
-    {
-        id: 'g-4',
-        title: 'Arena Live Concert Spectacle',
-        category: 'concerts',
-        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1000&q=85'
-    },
-    {
-        id: 'g-5',
-        title: 'Candlelit Villa Reception',
-        category: 'weddings',
-        image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=85'
-    },
-    {
-        id: 'g-6',
-        title: 'Luxury Brand Launch Event',
-        category: 'corporate',
-        image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=85'
-    },
-    {
-        id: 'g-7',
-        title: 'Beachfront Sunset Marquee',
-        category: 'weddings',
-        image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85'
-    },
-    {
-        id: 'g-8',
-        title: 'Crystal Chandelier Pavilion',
-        category: 'decor',
-        image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=85'
-    }
-];
-
 // Testimonials Dataset
 const REVIEWS = [
     {
@@ -200,12 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollEffects();
     initHeroSlider();
     
-    // Page specific renderers
-    renderHomeServices();
-    renderHomeGallery();
-    renderServicesPage('all');
+    // Page Filter Engines
     initServicesPageFilters();
-    renderGalleryPage('all');
     initGalleryPageFilters();
 
     renderTestimonial(0);
@@ -285,106 +113,48 @@ function initHeroSlider() {
     }, 5000);
 }
 
-/* Render Home Teasers */
-function renderHomeServices() {
-    const container = document.getElementById('home-services-container');
-    if (!container) return;
-
-    // Show top 6 on home page
-    const top6 = SERVICES.slice(0, 6);
-    container.innerHTML = top6.map(s => `
-        <div class="service-card">
-            <div class="service-img-wrapper">
-                <img src="${s.image}" alt="${s.title}" class="service-img" loading="lazy">
-                <span class="service-badge">${s.category}</span>
-            </div>
-            <div class="service-content">
-                <h3 class="service-title">${s.title}</h3>
-                <p class="service-desc">${s.desc}</p>
-                <a href="services.html" class="service-link">View Details ✦</a>
-            </div>
-        </div>
-    `).join('');
-}
-
-function renderHomeGallery() {
-    const container = document.getElementById('home-gallery-container');
-    if (!container) return;
-
-    const top6 = GALLERY.slice(0, 6);
-    container.innerHTML = top6.map(g => `
-        <div class="gallery-item" onclick="openLightbox('${g.image}')">
-            <img src="${g.image}" alt="${g.title}" class="gallery-img" loading="lazy">
-            <div class="gallery-overlay">
-                <span class="gallery-category">${g.category}</span>
-                <h4 class="gallery-title">${g.title}</h4>
-            </div>
-        </div>
-    `).join('');
-}
-
-/* Render Dedicated Services Page (services.html) */
-function renderServicesPage(filter = 'all') {
-    const container = document.getElementById('services-page-container');
-    if (!container) return;
-
-    const filtered = filter === 'all' 
-        ? SERVICES 
-        : SERVICES.filter(s => s.category === filter);
-
-    container.innerHTML = filtered.map(s => `
-        <div class="service-card">
-            <div class="service-img-wrapper">
-                <img src="${s.image}" alt="${s.title}" class="service-img" loading="lazy">
-                <span class="service-badge">${s.category}</span>
-            </div>
-            <div class="service-content">
-                <h3 class="service-title">${s.title}</h3>
-                <p class="service-desc">${s.desc}</p>
-                <a href="index.html#contact" class="service-link">Book This Service ✦</a>
-            </div>
-        </div>
-    `).join('');
-}
-
+/* Category Filter for services.html */
 function initServicesPageFilters() {
     const btns = document.querySelectorAll('[data-service-filter]');
+    const cards = document.querySelectorAll('#services-page-container .service-card');
+    if (btns.length === 0 || cards.length === 0) return;
+
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderServicesPage(btn.dataset.serviceFilter);
+
+            const cat = btn.dataset.serviceFilter;
+            cards.forEach(card => {
+                if (cat === 'all' || card.dataset.category === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     });
 }
 
-/* Render Dedicated Gallery Page (gallery.html) */
-function renderGalleryPage(filter = 'all') {
-    const container = document.getElementById('gallery-page-container');
-    if (!container) return;
-
-    const filtered = filter === 'all' 
-        ? GALLERY 
-        : GALLERY.filter(g => g.category === filter);
-
-    container.innerHTML = filtered.map(g => `
-        <div class="gallery-item" onclick="openLightbox('${g.image}')">
-            <img src="${g.image}" alt="${g.title}" class="gallery-img" loading="lazy">
-            <div class="gallery-overlay">
-                <span class="gallery-category">${g.category}</span>
-                <h4 class="gallery-title">${g.title}</h4>
-            </div>
-        </div>
-    `).join('');
-}
-
+/* Category Filter for gallery.html */
 function initGalleryPageFilters() {
     const btns = document.querySelectorAll('[data-gallery-filter]');
+    const cards = document.querySelectorAll('#gallery-page-container .gallery-item');
+    if (btns.length === 0 || cards.length === 0) return;
+
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderGalleryPage(btn.dataset.galleryFilter);
+
+            const cat = btn.dataset.galleryFilter;
+            cards.forEach(card => {
+                if (cat === 'all' || card.dataset.category === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     });
 }

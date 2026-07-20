@@ -113,7 +113,7 @@
         </div>
     </section>
 
-    <!-- Featured Services Section (Teaser to services.html) -->
+    <!-- Featured Services Section -->
     <section id="services" class="section-padding" style="background: var(--bg-surface);">
         <div class="container">
             <div class="section-header text-center">
@@ -123,7 +123,77 @@
             </div>
 
             <div class="services-grid" id="home-services-container">
-                <!-- Top 6 featured services rendered via JS -->
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Wedding Planning" class="service-img">
+                        <span class="service-badge">Weddings</span>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Wedding Planning</h3>
+                        <p class="service-desc">Bespoke end-to-end wedding design, floral curation, timeline management, and regal celebrations tailored to your personal love story.</p>
+                        <a href="services.html" class="service-link">View Details ✦</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Destination Weddings" class="service-img">
+                        <span class="service-badge">Weddings</span>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Destination Weddings</h3>
+                        <p class="service-desc">Seamless luxury travel coordination, exotic venue procurement, and multi-day celebrations in Europe, Asia, and tropical paradises.</p>
+                        <a href="services.html" class="service-link">View Details ✦</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt="Corporate Events" class="service-img">
+                        <span class="service-badge">Corporate</span>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Corporate Events</h3>
+                        <p class="service-desc">High-profile executive summits, annual banquets, and award galas designed for prestige, brand authority, and flawless flow.</p>
+                        <a href="services.html" class="service-link">View Details ✦</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" alt="Decor & Styling" class="service-img">
+                        <span class="service-badge">Design</span>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Decor & Styling</h3>
+                        <p class="service-desc">Opulent floral arches, gold crystal chandeliers, velvet draping, and bespoke tabletop design curated by master stylists.</p>
+                        <a href="services.html" class="service-link">View Details ✦</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Stage Design" class="service-img">
+                        <span class="service-badge">Design</span>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Stage Design</h3>
+                        <p class="service-desc">Custom architectural stages, 3D projection mapping, LED video walls, and runway designs built to command attention.</p>
+                        <a href="services.html" class="service-link">View Details ✦</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Live Shows" class="service-img">
+                        <span class="service-badge">Concerts</span>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Live Shows</h3>
+                        <p class="service-desc">Spectacular live theatrical performances, laser light shows, and pyrotechnic productions engineered for maximum awe.</p>
+                        <a href="services.html" class="service-link">View Details ✦</a>
+                    </div>
+                </div>
             </div>
 
             <div class="text-center" style="margin-top: 3.5rem;">
@@ -132,7 +202,7 @@
         </div>
     </section>
 
-    <!-- Featured Gallery Section (Teaser to gallery.html) -->
+    <!-- Featured Gallery Section -->
     <section id="gallery" class="section-padding">
         <div class="container">
             <div class="section-header text-center">
@@ -142,7 +212,53 @@
             </div>
 
             <div class="gallery-grid" id="home-gallery-container">
-                <!-- Featured gallery cards rendered via JS -->
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Royal Palace Destination Wedding" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Weddings</span>
+                        <h4 class="gallery-title">Royal Palace Destination Wedding</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt="Global Tech Leadership Gala" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Corporate</span>
+                        <h4 class="gallery-title">Global Tech Leadership Gala</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" alt="Gold & Floral Stage Architecture" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Luxury Decor</span>
+                        <h4 class="gallery-title">Gold & Floral Stage Architecture</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Arena Live Concert Spectacle" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Concerts & Shows</span>
+                        <h4 class="gallery-title">Arena Live Concert Spectacle</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Candlelit Villa Reception" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Weddings</span>
+                        <h4 class="gallery-title">Candlelit Villa Reception</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80" alt="Luxury Brand Launch Event" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Corporate</span>
+                        <h4 class="gallery-title">Luxury Brand Launch Event</h4>
+                    </div>
+                </div>
             </div>
 
             <div class="text-center" style="margin-top: 3.5rem;">

@@ -62,6 +62,7 @@
     <!-- Gallery Section -->
     <section class="section-padding" style="padding-top: 2rem;">
         <div class="container">
+            <!-- Category Filter Tabs -->
             <div class="gallery-filter" style="margin-bottom: 3rem;">
                 <button class="filter-btn active" data-gallery-filter="all">All Masterpieces</button>
                 <button class="filter-btn" data-gallery-filter="weddings">Weddings</button>
@@ -70,8 +71,81 @@
                 <button class="filter-btn" data-gallery-filter="concerts">Concerts & Shows</button>
             </div>
 
+            <!-- 12 Static High-Definition Gallery Cards -->
             <div class="gallery-grid" id="gallery-page-container">
-                <!-- Gallery masonry cards rendered dynamically -->
+                
+                <div class="gallery-item" data-category="weddings" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Royal Palace Destination Wedding" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Weddings</span>
+                        <h4 class="gallery-title">Royal Palace Destination Wedding</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="corporate" onclick="openLightbox('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt="Global Tech Leadership Gala" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Corporate</span>
+                        <h4 class="gallery-title">Global Tech Leadership Gala</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="decor" onclick="openLightbox('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" alt="Gold & Floral Stage Architecture" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Luxury Decor</span>
+                        <h4 class="gallery-title">Gold & Floral Stage Architecture</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="concerts" onclick="openLightbox('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Arena Live Concert Spectacle" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Concerts & Shows</span>
+                        <h4 class="gallery-title">Arena Live Concert Spectacle</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="weddings" onclick="openLightbox('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Candlelit Villa Reception" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Weddings</span>
+                        <h4 class="gallery-title">Candlelit Villa Reception</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="corporate" onclick="openLightbox('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80" alt="Luxury Brand Launch Event" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Corporate</span>
+                        <h4 class="gallery-title">Luxury Brand Launch Event</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="weddings" onclick="openLightbox('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" alt="Beachfront Sunset Marquee" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Weddings</span>
+                        <h4 class="gallery-title">Beachfront Sunset Marquee</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="decor" onclick="openLightbox('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="Crystal Chandelier Pavilion" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Luxury Decor</span>
+                        <h4 class="gallery-title">Crystal Chandelier Pavilion</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="concerts" onclick="openLightbox('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=85')">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80" alt="Festival Mainstage Lighting" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Concerts & Shows</span>
+                        <h4 class="gallery-title">Festival Mainstage Lighting</h4>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
