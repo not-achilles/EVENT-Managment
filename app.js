@@ -1,281 +1,443 @@
-// Event Management State & LocalStorage Logic
-const STORAGE_KEY = 'eventhub_pro_events';
+/* ==========================================================================
+   AURA & GOLD - LUXURY EVENT MANAGEMENT JAVASCRIPT ENGINE
+   ========================================================================== */
 
-const INITIAL_EVENTS = [
+// 16 Services Dataset
+const SERVICES = [
     {
-        id: '1',
-        title: 'Global AI & Cloud Architecture Summit 2026',
-        category: 'Tech & Code',
-        date: '2026-08-15T10:00',
-        location: 'Silicon Valley Convention Center & Virtual',
-        price: 99,
-        capacity: 500,
-        booked: 342,
-        description: 'Join top software engineers and architects to discuss next-generation AI agents, distributed cloud computing, and real-time automation.'
+        id: 'service-1',
+        title: 'Wedding Planning',
+        category: 'Weddings',
+        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
+        desc: 'Bespoke end-to-end wedding design, floral curation, timeline management, and regal celebrations tailored to your personal love story.'
     },
     {
-        id: '2',
-        title: 'Full-Stack Developer Hands-On Bootcamp',
-        category: 'Workshops',
-        date: '2026-08-20T14:00',
-        location: 'Innovation Hub, Floor 4',
-        price: 49,
-        capacity: 80,
-        booked: 65,
-        description: 'Interactive workshop on building scalable web apps with Git auto-commit workflows, Node.js, and modern UI components.'
+        id: 'service-2',
+        title: 'Destination Weddings',
+        category: 'Weddings',
+        image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80',
+        desc: 'Seamless luxury travel coordination, exotic venue procurement, and multi-day celebrations in Europe, Asia, and tropical paradises.'
     },
     {
-        id: '3',
-        title: 'Cybersecurity & Zero-Trust Defense Conference',
-        category: 'Conferences',
-        date: '2026-09-02T09:30',
-        location: 'Metropolitan Expo Center',
-        price: 149,
-        capacity: 300,
-        booked: 120,
-        description: 'Keynotes on network protection, automated dev-sec-ops pipelines, and secure cloud credentials.'
+        id: 'service-3',
+        title: 'Engagement Ceremonies',
+        category: 'Weddings',
+        image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80',
+        desc: 'Intimate ring ceremonies and lavish engagement galas designed with exquisite champagne styling and candlelit ambience.'
     },
     {
-        id: '4',
-        title: 'Indie Tech & Creative Design Showcase',
-        category: 'Music & Art',
-        date: '2026-09-18T18:00',
-        location: 'Design Quarter Arts Lab',
-        price: 0,
-        capacity: 150,
-        booked: 145,
-        description: 'A celebration of creative UI design, generative artwork, and indie project demos with live music.'
+        id: 'service-4',
+        title: 'Birthday Parties',
+        category: 'Private Events',
+        image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80',
+        desc: 'Milestone birthdays, glamorous masquerades, and themed celebrations crafted with custom cocktail bars and live DJs.'
+    },
+    {
+        id: 'service-5',
+        title: 'Corporate Events',
+        category: 'Corporate',
+        image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+        desc: 'High-profile executive summits, annual banquets, and award galas designed for prestige, brand authority, and flawless flow.'
+    },
+    {
+        id: 'service-6',
+        title: 'Product Launches',
+        category: 'Corporate',
+        image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80',
+        desc: 'High-impact press launches, interactive brand activations, and immersive multimedia reveals for global luxury brands.'
+    },
+    {
+        id: 'service-7',
+        title: 'Live Shows',
+        category: 'Concerts',
+        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+        desc: 'Spectacular live theatrical performances, laser light shows, and pyrotechnic productions engineered for maximum awe.'
+    },
+    {
+        id: 'service-8',
+        title: 'Concerts',
+        category: 'Concerts',
+        image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+        desc: 'Arena and festival scale production, crowd management, sound staging, and VIP artist hospitality management.'
+    },
+    {
+        id: 'service-9',
+        title: 'Decor & Styling',
+        category: 'Design',
+        image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80',
+        desc: 'Opulent floral arches, gold crystal chandeliers, velvet draping, and bespoke tabletop design curated by master stylists.'
+    },
+    {
+        id: 'service-10',
+        title: 'Stage Design',
+        category: 'Design',
+        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
+        desc: 'Custom architectural stages, 3D projection mapping, LED video walls, and runway designs built to command attention.'
+    },
+    {
+        id: 'service-11',
+        title: 'Photography & Videography',
+        category: 'Media',
+        image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80',
+        desc: 'Award-winning cinematic videography, 4K drone aerial shots, and editorial photojournalism capturing every emotion.'
+    },
+    {
+        id: 'service-12',
+        title: 'Entertainment Management',
+        category: 'Entertainment',
+        image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+        desc: 'Curated lineups of international orchestra ensembles, aerial acrobats, illusionists, and celebrity performers.'
+    },
+    {
+        id: 'service-13',
+        title: 'Artist Management',
+        category: 'Entertainment',
+        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
+        desc: 'Contract negotiation, backstage greenroom logistics, security detail, and liaison for top-tier musical acts.'
+    },
+    {
+        id: 'service-14',
+        title: 'Sound & Lighting',
+        category: 'Production',
+        image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80',
+        desc: 'Concert-grade line array acoustic systems, intelligent kinetic moving lights, and atmospheric haze FX.'
+    },
+    {
+        id: 'service-15',
+        title: 'Catering Coordination',
+        category: 'Hospitality',
+        image: 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80',
+        desc: 'Michelin-starred multi-course menus, sommelier wine pairings, molecular mixology, and white-glove table service.'
+    },
+    {
+        id: 'service-16',
+        title: 'Venue Selection',
+        category: 'Hospitality',
+        image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
+        desc: 'Exclusive access to historical castles, private beachfront estates, luxury penthouse ballrooms, and secret garden estates.'
     }
 ];
 
-let events = [];
-let currentCategory = 'all';
-let searchQuery = '';
-let sortBy = 'date-asc';
+// Gallery Portfolio Dataset
+const GALLERY = [
+    {
+        id: 'g-1',
+        title: 'Royal Palace Destination Wedding',
+        category: 'weddings',
+        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85'
+    },
+    {
+        id: 'g-2',
+        title: 'Global Tech Leadership Gala',
+        category: 'corporate',
+        image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=85'
+    },
+    {
+        id: 'g-3',
+        title: 'Gold & Floral Stage Architecture',
+        category: 'decor',
+        image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1000&q=85'
+    },
+    {
+        id: 'g-4',
+        title: 'Arena Live Concert Spectacle',
+        category: 'concerts',
+        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1000&q=85'
+    },
+    {
+        id: 'g-5',
+        title: 'Candlelit Villa Reception',
+        category: 'weddings',
+        image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=85'
+    },
+    {
+        id: 'g-6',
+        title: 'Luxury Brand Launch Event',
+        category: 'corporate',
+        image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=85'
+    }
+];
 
-// DOM Elements
-const eventsGrid = document.getElementById('events-grid');
-const globalSearch = document.getElementById('global-search');
-const categoryTabs = document.getElementById('category-tabs');
-const sortSelect = document.getElementById('sort-select');
-const themeToggle = document.getElementById('theme-toggle');
+// Testimonials Dataset
+const REVIEWS = [
+    {
+        quote: "AURA & GOLD transformed our destination wedding in Lake Como into an absolute fairytale. Every single guest was spellbound by the floral installations and seamless coordination.",
+        name: "Duchess Victoria & Alexander Sterling",
+        event: "Destination Wedding, Italy",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+        quote: "The team executed our annual global tech summit for 2,500 executives without a single hiccup. Their stage design and VIP hospitality set a new gold standard for our company.",
+        name: "Marcus Vance",
+        event: "CEO, Nexa Global Enterprises",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+        quote: "From artist contracting to concert sound staging, AURA & GOLD delivered unmatched luxury and precision. Their attention to detail is truly world-class.",
+        name: "Elena Rostova",
+        event: "Founder, Harmony Music Festival",
+        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
+    }
+];
 
-// Modal Elements
-const modalCreate = document.getElementById('modal-create-event');
-const btnOpenCreate = document.getElementById('btn-open-create');
-const btnCloseModal = document.getElementById('btn-close-modal');
-const btnCancelModal = document.getElementById('btn-cancel-modal');
-const formCreate = document.getElementById('form-create-event');
+let currentReviewIndex = 0;
 
-const modalBooking = document.getElementById('modal-booking');
-const btnCloseBooking = document.getElementById('btn-close-booking');
-const btnFinishBooking = document.getElementById('btn-finish-booking');
-const bookingBody = document.getElementById('booking-modal-body');
+// Initialize Application
+document.addEventListener('DOMContentLoaded', () => {
+    initCursor();
+    initScrollEffects();
+    initHeroSlider();
+    renderServices();
+    renderGallery('all');
+    initGalleryFilters();
+    renderTestimonial(0);
+    initTestimonialAutoLoop();
+    initCountersObserver();
+    initFaqAccordion();
+    initContactForm();
+    initLightbox();
+    initMobileNav();
+});
 
-// Stats Elements
-const statTotal = document.getElementById('stat-total-events');
-const statAttendees = document.getElementById('stat-total-attendees');
-const statRevenue = document.getElementById('stat-revenue');
-const statUpcoming = document.getElementById('stat-upcoming');
+/* Custom Cursor */
+function initCursor() {
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    if (!cursor || !follower) return;
 
-// Initialize
-function init() {
-    loadEvents();
-    setupEventListeners();
-    render();
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = `${mouseX}px`;
+        cursor.style.top = `${mouseY}px`;
+    });
+
+    function renderCursor() {
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
+        follower.style.left = `${followerX}px`;
+        follower.style.top = `${followerY}px`;
+        requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
 }
 
-function loadEvents() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-        try {
-            events = JSON.parse(saved);
-        } catch(e) {
-            events = INITIAL_EVENTS;
+/* Scroll Effects: Progress Bar, Navbar, Back to Top */
+function initScrollEffects() {
+    const progressBar = document.getElementById('scroll-progress');
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        if (progressBar) progressBar.style.width = scrolled + '%';
+
+        if (winScroll > 80) {
+            navbar.classList.add('scrolled');
+            if (backToTop) backToTop.classList.add('visible');
+        } else {
+            navbar.classList.remove('scrolled');
+            if (backToTop) backToTop.classList.remove('visible');
         }
-    } else {
-        events = INITIAL_EVENTS;
-        saveEvents();
+    });
+
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 }
 
-function saveEvents() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+/* Hero Background Slide Loop */
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length === 0) return;
+    let currentSlide = 0;
+
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 5000);
 }
 
-function setupEventListeners() {
-    // Theme toggle
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', nextTheme);
-        themeToggle.querySelector('.theme-icon').textContent = nextTheme === 'dark' ? '🌙' : '☀️';
-    });
+/* Render 16 Services */
+function renderServices() {
+    const container = document.getElementById('services-container');
+    if (!container) return;
 
-    // Search
-    globalSearch.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
-        render();
-    });
-
-    // Category filter
-    categoryTabs.addEventListener('click', (e) => {
-        if (e.target.classList.contains('tab-btn')) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            currentCategory = e.target.dataset.category;
-            render();
-        }
-    });
-
-    // Sorting
-    sortSelect.addEventListener('change', (e) => {
-        sortBy = e.target.value;
-        render();
-    });
-
-    // Modals
-    btnOpenCreate.addEventListener('click', () => modalCreate.classList.add('active'));
-    btnCloseModal.addEventListener('click', () => modalCreate.classList.remove('active'));
-    btnCancelModal.addEventListener('click', () => modalCreate.classList.remove('active'));
-    
-    btnCloseBooking.addEventListener('click', () => modalBooking.classList.remove('active'));
-    btnFinishBooking.addEventListener('click', () => modalBooking.classList.remove('active'));
-
-    // Create Event Form
-    formCreate.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const newEvent = {
-            id: Date.now().toString(),
-            title: document.getElementById('event-title').value,
-            category: document.getElementById('event-category').value,
-            price: parseFloat(document.getElementById('event-price').value) || 0,
-            date: document.getElementById('event-date').value,
-            capacity: parseInt(document.getElementById('event-capacity').value) || 100,
-            booked: 0,
-            location: document.getElementById('event-location').value,
-            description: document.getElementById('event-description').value
-        };
-
-        events.unshift(newEvent);
-        saveEvents();
-        formCreate.reset();
-        modalCreate.classList.remove('active');
-        render();
-    });
+    container.innerHTML = SERVICES.map(s => `
+        <div class="service-card">
+            <div class="service-img-wrapper">
+                <img src="${s.image}" alt="${s.title}" class="service-img" loading="lazy">
+                <span class="service-badge">${s.category}</span>
+            </div>
+            <div class="service-content">
+                <h3 class="service-title">${s.title}</h3>
+                <p class="service-desc">${s.desc}</p>
+                <a href="#contact" class="service-link">Learn More ✦</a>
+            </div>
+        </div>
+    `).join('');
 }
 
-function getFilteredEvents() {
-    return events.filter(evt => {
-        const matchesCategory = currentCategory === 'all' || evt.category === currentCategory;
-        const matchesSearch = evt.title.toLowerCase().includes(searchQuery) || 
-                              evt.location.toLowerCase().includes(searchQuery) ||
-                              evt.description.toLowerCase().includes(searchQuery);
-        return matchesCategory && matchesSearch;
-    }).sort((a, b) => {
-        if (sortBy === 'date-asc') return new Date(a.date) - new Date(b.date);
-        if (sortBy === 'date-desc') return new Date(b.date) - new Date(a.date);
-        if (sortBy === 'popular') return b.booked - a.booked;
-        return 0;
+/* Render Gallery & Filters */
+function renderGallery(filter = 'all') {
+    const container = document.getElementById('gallery-container');
+    if (!container) return;
+
+    const filtered = filter === 'all' 
+        ? GALLERY 
+        : GALLERY.filter(g => g.category === filter);
+
+    container.innerHTML = filtered.map(g => `
+        <div class="gallery-item" onclick="openLightbox('${g.image}')">
+            <img src="${g.image}" alt="${g.title}" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+                <span class="gallery-category">${g.category}</span>
+                <h4 class="gallery-title">${g.title}</h4>
+            </div>
+        </div>
+    `).join('');
+}
+
+function initGalleryFilters() {
+    const btns = document.querySelectorAll('.filter-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderGallery(btn.dataset.filter);
+        });
     });
 }
 
-function updateStats() {
-    const totalEvents = events.length;
-    const totalAttendees = events.reduce((sum, e) => sum + e.booked, 0);
-    const totalRev = events.reduce((sum, e) => sum + (e.booked * e.price), 0);
-    
-    const now = new Date();
-    const upcoming = events.filter(e => new Date(e.date) >= now).length;
+/* Lightbox Modal */
+function initLightbox() {
+    const modal = document.getElementById('lightbox');
+    const closeBtn = document.getElementById('lightbox-close');
+    if (!modal || !closeBtn) return;
 
-    statTotal.textContent = totalEvents;
-    statAttendees.textContent = totalAttendees.toLocaleString();
-    statRevenue.textContent = `$${totalRev.toLocaleString()}`;
-    statUpcoming.textContent = upcoming;
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
 }
 
-function bookTicket(eventId) {
-    const event = events.find(e => e.id === eventId);
-    if (!event) return;
-
-    if (event.booked >= eventCapacity) {
-        alert('Sorry, this event is fully booked!');
-        return;
+function openLightbox(imgSrc) {
+    const modal = document.getElementById('lightbox');
+    const modalImg = document.getElementById('lightbox-img');
+    if (modal && modalImg) {
+        modalImg.src = imgSrc;
+        modal.classList.add('active');
     }
+}
+window.openLightbox = openLightbox;
 
-    event.booked += 1;
-    saveEvents();
+/* Testimonials Carousel */
+function renderTestimonial(index) {
+    const container = document.getElementById('testimonials-container');
+    if (!container) return;
 
-    bookingBody.innerHTML = `
-        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉</div>
-        <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">${event.title}</h4>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
-            📅 ${new Date(event.date).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })} <br>
-            📍 ${event.location}
-        </p>
-        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 12px; border: 1px dashed var(--accent-primary); margin-bottom: 1rem;">
-            <div style="font-size: 0.8rem; color: var(--text-muted);">TICKET ID</div>
-            <div style="font-weight: 800; font-family: monospace; letter-spacing: 1px; color: var(--accent-primary);">EVT-${Math.random().toString(36).substring(2, 9).toUpperCase()}</div>
+    const rev = REVIEWS[index];
+    container.innerHTML = `
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-quote">"${rev.quote}"</p>
+            <div class="testimonial-author">
+                <img src="${rev.avatar}" alt="${rev.name}" class="author-img">
+                <div class="text-left">
+                    <div class="author-name">${rev.name}</div>
+                    <div class="author-event">${rev.event}</div>
+                </div>
+            </div>
         </div>
     `;
-
-    modalBooking.classList.add('active');
-    render();
 }
 
-function render() {
-    updateStats();
-    const filtered = getFilteredEvents();
-
-    if (filtered.length === 0) {
-        eventsGrid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-                <h3>No events found</h3>
-                <p>Try adjusting your search query or category filters.</p>
-            </div>
-        `;
-        return;
-    }
-
-    eventsGrid.innerHTML = filtered.map(evt => {
-        const percent = Math.min(100, Math.round((evt.booked / evt.capacity) * 100));
-        const formattedDate = new Date(evt.date).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
-        const priceLabel = evt.price === 0 ? 'FREE' : `$${evt.price}`;
-
-        return `
-            <div class="event-card">
-                <div class="event-banner">
-                    <span class="event-category-badge">${evt.category}</span>
-                    <span class="event-price-tag">${priceLabel}</span>
-                </div>
-                <div class="event-body">
-                    <h3 class="event-title">${evt.title}</h3>
-                    <div class="event-meta">
-                        <div class="event-meta-item"><span>📅</span> ${formattedDate}</div>
-                        <div class="event-meta-item"><span>📍</span> ${evt.location}</div>
-                    </div>
-                    <p class="event-description">${evt.description}</p>
-                    
-                    <div class="event-footer">
-                        <div class="capacity-info">
-                            <div>${evt.booked} / ${evt.capacity} Attending</div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${percent}%;"></div>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" onclick="bookTicket('${evt.id}')" ${evt.booked >= evt.capacity ? 'disabled' : ''}>
-                            ${evt.booked >= evt.capacity ? 'Sold Out' : 'Book Ticket'}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join('');
+function initTestimonialAutoLoop() {
+    setInterval(() => {
+        currentReviewIndex = (currentReviewIndex + 1) % REVIEWS.length;
+        renderTestimonial(currentReviewIndex);
+    }, 6000);
 }
 
-// Make bookTicket available globally
-window.bookTicket = bookTicket;
+/* Animated Stat Counters */
+function initCountersObserver() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    if (statNumbers.length === 0) return;
 
-// Run on load
-document.addEventListener('DOMContentLoaded', init);
+    let animated = false;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) {
+                animated = true;
+                statNumbers.forEach(num => {
+                    const target = parseInt(num.dataset.target);
+                    let current = 0;
+                    const step = Math.ceil(target / 50);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            num.textContent = target + '+';
+                            clearInterval(timer);
+                        } else {
+                            num.textContent = current + '+';
+                        }
+                    }, 30);
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats-banner');
+    if (statsSection) observer.observe(statsSection);
+}
+
+/* FAQ Accordion */
+function initFaqAccordion() {
+    const items = document.querySelectorAll('.faq-item');
+    items.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            items.forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+}
+
+/* Contact Form Validation & Submission */
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('✨ Thank you for reaching out to AURA & GOLD!\nOur Executive Concierge team will review your event vision and contact you within 24 hours.');
+        form.reset();
+    });
+}
+
+/* Mobile Nav Drawer Toggle */
+function initMobileNav() {
+    const toggle = document.getElementById('mobile-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (!toggle || !navLinks) return;
+
+    toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+}

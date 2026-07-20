@@ -1,201 +1,403 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventHub Pro - Modern Event Management System</title>
-    <meta name="description" content="Manage, host, and track your events seamlessly with EventHub Pro. Create events, handle RSVPs, and track stats in real-time.">
+    <title>AURA & GOLD | Luxury Event Planning & Production</title>
+    <meta name="description" content="AURA & GOLD transforms celebrations into timeless memories through luxury event planning, stunning decor, and flawless execution.">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- App Container -->
-    <div class="app-container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="brand">
-                <div class="brand-icon">✨</div>
-                <h2>EventHub<span>.io</span></h2>
-            </div>
-            
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- Custom Cursor (Desktop Only) -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-follower" id="cursor-follower"></div>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="brand-logo">
+                <span class="brand-symbol">❖</span>
+                <div class="brand-name">AURA <span>&</span> GOLD</div>
+            </a>
+
             <nav class="nav-menu">
-                <button class="nav-item active" data-view="dashboard">
-                    <span class="icon">📊</span> Dashboard
-                </button>
-                <button class="nav-item" data-view="events">
-                    <span class="icon">📅</span> All Events
-                </button>
-                <button class="nav-item" data-view="calendar">
-                    <span class="icon">🗓️</span> Calendar View
-                </button>
-                <button class="nav-item" data-view="analytics">
-                    <span class="icon">📈</span> Analytics
-                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#reviews" class="nav-link">Client Reviews</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
             </nav>
 
-            <div class="repo-badge">
-                <div class="badge-title">Git Auto-Commit</div>
-                <div class="badge-status"><span class="pulse"></span> Active watcher ready</div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="#contact" class="btn btn-primary" id="btn-nav-book">Book Your Event</a>
+                <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Menu">☰</button>
             </div>
-        </aside>
+        </div>
+    </header>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Top Header -->
-            <header class="top-header">
-                <div class="search-bar">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="global-search" placeholder="Search events by title, venue, or category...">
-                </div>
-                
-                <div class="header-actions">
-                    <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
-                        <span class="theme-icon">🌙</span>
-                    </button>
-                    <button class="btn btn-primary" id="btn-open-create">
-                        <span>➕</span> Create Event
-                    </button>
-                </div>
-            </header>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-center">
+        <div class="hero-slider-bg">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2000&q=85');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=2000&q=85');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2000&q=85');"></div>
+        </div>
+        <div class="hero-overlay"></div>
 
-            <!-- Metrics Overview -->
-            <section class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <span class="stat-label">Total Events</span>
-                        <h3 class="stat-value" id="stat-total-events">0</h3>
-                    </div>
-                    <div class="stat-icon icon-purple">🎉</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <span class="stat-label">Total Attendees</span>
-                        <h3 class="stat-value" id="stat-total-attendees">0</h3>
-                    </div>
-                    <div class="stat-icon icon-blue">👥</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <span class="stat-label">Revenue Generated</span>
-                        <h3 class="stat-value" id="stat-revenue">$0</h3>
-                    </div>
-                    <div class="stat-icon icon-green">💰</div>
-                </div>
+        <div class="container hero-content">
+            <div class="section-tag">Luxury Event Planning & Production</div>
+            <h1 class="hero-title">Creating <span class="gold-text">Unforgettable</span> Experiences</h1>
+            <p class="hero-subtitle">We transform celebrations into timeless memories through exceptional planning, stunning décor, and flawless execution for discerning clients worldwide.</p>
+            
+            <div class="hero-cta-group">
+                <a href="#contact" class="btn btn-primary">Book Consultation ✦</a>
+                <a href="#gallery" class="btn btn-outline">Explore Our Work</a>
+            </div>
+        </div>
 
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <span class="stat-label">Upcoming This Month</span>
-                        <h3 class="stat-value" id="stat-upcoming">0</h3>
-                    </div>
-                    <div class="stat-icon icon-orange">⏰</div>
-                </div>
-            </section>
+        <a href="#about" class="scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll</span>
+        </a>
+    </section>
 
-            <!-- Category Filter Tabs -->
-            <div class="filters-bar">
-                <div class="category-tabs" id="category-tabs">
-                    <button class="tab-btn active" data-category="all">All Events</button>
-                    <button class="tab-btn" data-category="Tech & Code">Tech & Code</button>
-                    <button class="tab-btn" data-category="Conferences">Conferences</button>
-                    <button class="tab-btn" data-category="Music & Art">Music & Art</button>
-                    <button class="tab-btn" data-category="Workshops">Workshops</button>
-                </div>
-
-                <select id="sort-select" class="sort-select">
-                    <option value="date-asc">Date: Soonest First</option>
-                    <option value="date-desc">Date: Latest First</option>
-                    <option value="popular">Most Popular</option>
-                </select>
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container text-center">
+            <div class="section-header">
+                <span class="section-tag">Our Philosophy</span>
+                <h2>Crafted With <span class="gold-text">Elegance</span> & Precision</h2>
+                <p>AURA & GOLD is a premier luxury event management agency specializing in bespoke weddings, high-profile corporate galas, and exclusive private celebrations.</p>
             </div>
 
-            <!-- Events Grid -->
-            <section class="events-section">
-                <div class="events-grid" id="events-grid">
-                    <!-- Event Cards populated via JS -->
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">✨</div>
+                    <h3>Boundless Creativity</h3>
+                    <p>Custom concept creation tailored to reflect your unique personal style, story, and grand vision.</p>
                 </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- Create / Edit Event Modal -->
-    <div class="modal-backdrop" id="modal-create-event">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Create New Event</h3>
-                <button class="modal-close" id="btn-close-modal">&times;</button>
+                <div class="about-card">
+                    <div class="about-icon">📐</div>
+                    <h3>Professional Planning</h3>
+                    <p>End-to-end meticulous project management from preliminary budgeting to final breakdown.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🔍</div>
+                    <h3>Attention to Detail</h3>
+                    <p>Every floral stem, ambient lighting scheme, and seating placement calibrated to perfection.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">👑</div>
+                    <h3>Customized Experiences</h3>
+                    <p>Immersive guest journeys engineered to evoke emotion, prestige, and lasting wonder.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🛡️</div>
+                    <h3>Reliable Execution</h3>
+                    <p>Flawless on-site direction by senior event directors ensuring a stress-free experience.</p>
+                </div>
             </div>
-            <form id="form-create-event" class="modal-body">
-                <div class="form-group">
-                    <label for="event-title">Event Title *</label>
-                    <input type="text" id="event-title" required placeholder="e.g. AI & Full-Stack Tech Summit 2026">
+        </div>
+    </section>
+
+    <!-- Services Section (16 Luxury Services) -->
+    <section id="services" class="section-padding" style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Bespoke Offerings</span>
+                <h2>Our <span class="gold-text">Luxury Services</span></h2>
+                <p>From intimate gatherings to grand international spectacles, we provide full-spectrum event excellence.</p>
+            </div>
+
+            <div class="services-grid" id="services-container">
+                <!-- 16 Luxury Services rendered dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Portfolio Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Curated Portfolio</span>
+                <h2>Moments Of <span class="gold-text">Perfection</span></h2>
+                <p>Explore our recent luxury weddings, high-society galas, stage designs, and grand celebrations.</p>
+            </div>
+
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All Masterpieces</button>
+                <button class="filter-btn" data-filter="weddings">Weddings</button>
+                <button class="filter-btn" data-filter="corporate">Corporate Galas</button>
+                <button class="filter-btn" data-filter="decor">Luxury Decor</button>
+                <button class="filter-btn" data-filter="concerts">Concerts & Shows</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-container">
+                <!-- Gallery masonry items rendered dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Counters Banner -->
+    <section class="stats-banner">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-title">Events Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="450">0</div>
+                    <div class="stat-title">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-title">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-title">Cities Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Reviews Section -->
+    <section id="reviews" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Client Praise</span>
+                <h2>Words From <span class="gold-text">Our Clients</span></h2>
+                <p>Read experiences from couples, executive hosts, and high-profile organizers.</p>
+            </div>
+
+            <div class="testimonials-carousel" id="testimonials-container">
+                <!-- Testimonial card active -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding" style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Clarifications</span>
+                <h2>Frequently Asked <span class="gold-text">Questions</span></h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How far in advance should we book our event with AURA & GOLD?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We recommend booking destination weddings and major galas 6 to 12 months in advance. However, our team is equipped to execute bespoke private celebrations with shorter turnarounds of 4 to 8 weeks.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you handle international destination events?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We specialize in destination weddings and international brand launches across Europe, Asia, the Middle East, and the Americas with full travel and logistics support.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can you customize decor and themes to our specific vision?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. Every design, floral installation, stage layout, and lighting scheme is 100% custom-created from scratch to reflect your preferences.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is included in your full-service event management?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Full-service management includes venue procurement, theme conceptualization, vendor coordination, staging & production, catering logistics, guest hospitality, artist management, and on-site event execution.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Consultation Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Get In Touch</span>
+                <h2>Let's Plan Your <span class="gold-text">Next Event</span></h2>
+                <p>Fill out the form below or contact our concierge team directly to begin planning your extraordinary celebration.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h3 style="margin-bottom: 2rem;">Executive Concierge</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Headquarters</h4>
+                            <p>Grand Avenue Tower, Penthouse Suite 42<br>Beverly Hills, CA 90210</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Direct Phone</h4>
+                            <a href="tel:+18005559090">+1 (800) 555-9090</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-text">
+                            <h4>WhatsApp VIP Support</h4>
+                            <a href="https://wa.me/18005559090" target="_blank">+1 (800) 555-9090</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <h4>Email Enquiries</h4>
+                            <a href="mailto:concierge@auragold.com">concierge@auragold.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-text">
+                            <h4>Business Hours</h4>
+                            <p>Monday - Saturday: 9:00 AM - 7:00 PM EST<br>24/7 VIP Event Assistance</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-row">
+                <form class="contact-form" id="contact-form">
+                    <h3 style="margin-bottom: 1.5rem;">Request Consultation</h3>
+                    
                     <div class="form-group">
-                        <label for="event-category">Category *</label>
-                        <select id="event-category" required>
-                            <option value="Tech & Code">Tech & Code</option>
-                            <option value="Conferences">Conferences</option>
-                            <option value="Music & Art">Music & Art</option>
-                            <option value="Workshops">Workshops</option>
+                        <label for="c-name">Full Name *</label>
+                        <input type="text" id="c-name" class="form-input" placeholder="e.g. Lady Eleanor Vance" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-email">Email Address *</label>
+                        <input type="email" id="c-email" class="form-input" placeholder="eleanor@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-phone">Phone Number *</label>
+                        <input type="tel" id="c-phone" class="form-input" placeholder="+1 (555) 000-0000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-type">Event Type *</label>
+                        <select id="c-type" class="form-input" required>
+                            <option value="Luxury Wedding">Luxury Wedding / Destination Wedding</option>
+                            <option value="Corporate Gala">Corporate Gala / Product Launch</option>
+                            <option value="Private Celebration">Exclusive Private Celebration</option>
+                            <option value="Concert & Live Show">Concert / Live Entertainment</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="event-price">Ticket Price ($) *</label>
-                        <input type="number" id="event-price" min="0" value="0" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="event-date">Date & Time *</label>
-                        <input type="datetime-local" id="event-date" required>
+                        <label for="c-message">Event Vision & Details</label>
+                        <textarea id="c-message" class="form-input" rows="4" placeholder="Tell us about your estimated guest count, preferred dates, and design aspirations..."></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="event-capacity">Max Capacity *</label>
-                        <input type="number" id="event-capacity" min="1" value="100" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="event-location">Venue / Location *</label>
-                    <input type="text" id="event-location" required placeholder="e.g. Tech Convention Center, San Francisco or Online Zoom">
-                </div>
-
-                <div class="form-group">
-                    <label for="event-description">Description</label>
-                    <textarea id="event-description" rows="3" placeholder="Provide details about speakers, schedule, or prerequisites..."></textarea>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="btn-cancel-modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create Event</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Booking Confirmation Modal -->
-    <div class="modal-backdrop" id="modal-booking">
-        <div class="modal-content text-center">
-            <div class="modal-header">
-                <h3>🎟️ Ticket Confirmed!</h3>
-                <button class="modal-close" id="btn-close-booking">&times;</button>
-            </div>
-            <div class="modal-body" id="booking-modal-body">
-                <!-- Confirmed ticket details filled dynamically -->
-            </div>
-            <div class="modal-footer justify-center">
-                <button class="btn btn-primary" id="btn-finish-booking">Done</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request ✦</button>
+                </form>
             </div>
         </div>
+    </section>
+
+    <!-- Floating WhatsApp & Back to Top -->
+    <div class="floating-actions">
+        <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+        <a href="https://wa.me/18005559090" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">💬</a>
     </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img src="" alt="Enlarged gallery view" class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="brand-logo">
+                        <span class="brand-symbol">❖</span>
+                        <div class="brand-name">AURA <span>&</span> GOLD</div>
+                    </a>
+                    <p>World-class luxury event planning, custom stage design, and flawless production for extraordinary moments.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#gallery">Portfolio</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Luxury Weddings</a></li>
+                        <li><a href="#services">Corporate Galas</a></li>
+                        <li><a href="#services">Stage & Lighting</a></li>
+                        <li><a href="#services">Artist Booking</a></li>
+                        <li><a href="#services">Catering Coordination</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact">Instagram</a></li>
+                        <li><a href="#contact">LinkedIn</a></li>
+                        <li><a href="#contact">Pinterest</a></li>
+                        <li><a href="#contact">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 AURA & GOLD Event Production. All Rights Reserved.</div>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="#home" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                    <a href="#home" style="color: inherit; text-decoration: none;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>

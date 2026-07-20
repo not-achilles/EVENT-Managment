@@ -14,6 +14,14 @@ import sys
 import time
 from datetime import datetime
 
+# Set console encoding to UTF-8 on Windows
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 GIT_EXE = r"C:\Program Files\Git\cmd\git.exe"
 if not os.path.exists(GIT_EXE):
     GIT_EXE = "git"  # fallback to PATH search
