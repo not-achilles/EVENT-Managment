@@ -254,8 +254,12 @@ function initFaqAccordion() {
     });
 }
 
-/* Contact Form & Inquiries Persistence */
+/* Contact Form & Google Sheets Integration */
 const INQUIRIES_KEY = 'gracengather_inquiries';
+
+// Replace with your Google Apps Script Web App URL to receive live entries in Google Sheets!
+// Example: 'https://script.google.com/macros/s/AKfycbx.../exec'
+let GOOGLE_SHEETS_WEB_APP_URL = localStorage.getItem('gracengather_google_sheet_url') || '';
 
 function saveInquiry(inquiry) {
     const existing = JSON.parse(localStorage.getItem(INQUIRIES_KEY) || '[]');
@@ -271,8 +275,13 @@ function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending to Concierge... ✦';
+        submitBtn.disabled = true;
 
         const name = document.getElementById('c-name').value;
         const email = document.getElementById('c-email').value;
@@ -290,14 +299,48 @@ function initContactForm() {
             message
         };
 
-        // Save to browser LocalStorage persistently
+        // 1. Save to local fallback storage
         saveInquiry(newInquiry);
-        console.log('✅ Grace N Gather inquiry saved:', newInquiry);
 
-        alert(`🪷 Thank you, ${name}!\n\nYour event consultation request for "${eventType}" has been successfully logged with Grace N Gather Events.\nOur Executive Concierge team will review your details and reach out to ${phone} / ${email} within 24 hours.`);
+        // 2. Submit to Google Sheets Web App URL if configured
+        if (GOOGLE_SHEETS_WEB_APP_URL) {
+            try {
+                const formData = new FormData();
+                formData.append('id', newInquiry.id);
+                formData.append('timestamp', newInquiry.timestamp);
+                formData.append('name', newInquiry.name);
+                formData.append('email', newInquiry.email);
+                formData.append('phone', newInquiry.phone);
+                formData.append('eventType', newInquiry.eventType);
+                formData.append('message', newInquiry.message);
+
+                await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+                console.log('📊 Inquiry successfully sent to Google Sheet!');
+            } catch (err) {
+                console.warn('⚠️ Google Sheets endpoint error:', err);
+            }
+        } else {
+            console.log('ℹ️ Google Sheets Web App URL not set yet. Submit via setGoogleSheetUrl("YOUR_URL")');
+        }
+
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+
+        alert(`🪷 Thank you, ${name}!\n\nYour event consultation request for "${eventType}" has been successfully submitted to Grace N Gather Events.\nOur Executive Concierge team will review your details and reach out to ${phone} / ${email} within 24 hours.`);
         form.reset();
     });
 }
+
+// Allow setting Google Sheets Web App URL dynamically from Console
+window.setGoogleSheetUrl = function(url) {
+    GOOGLE_SHEETS_WEB_APP_URL = url;
+    localStorage.setItem('gracengather_google_sheet_url', url);
+    alert('✅ Google Sheets Web App URL updated!');
+};
 
 // Make inquiries helper functions globally accessible in window for DevTools
 window.getGraceNGatherInquiries = getInquiries;
