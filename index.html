@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub Pro - Modern Event Management System</title>
+    <meta name="description" content="Manage, host, and track your events seamlessly with EventHub Pro. Create events, handle RSVPs, and track stats in real-time.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">✨</div>
+                <h2>EventHub<span>.io</span></h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" data-view="dashboard">
+                    <span class="icon">📊</span> Dashboard
+                </button>
+                <button class="nav-item" data-view="events">
+                    <span class="icon">📅</span> All Events
+                </button>
+                <button class="nav-item" data-view="calendar">
+                    <span class="icon">🗓️</span> Calendar View
+                </button>
+                <button class="nav-item" data-view="analytics">
+                    <span class="icon">📈</span> Analytics
+                </button>
+            </nav>
+
+            <div class="repo-badge">
+                <div class="badge-title">Git Auto-Commit</div>
+                <div class="badge-status"><span class="pulse"></span> Active watcher ready</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="global-search" placeholder="Search events by title, venue, or category...">
+                </div>
+                
+                <div class="header-actions">
+                    <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="btn btn-primary" id="btn-open-create">
+                        <span>➕</span> Create Event
+                    </button>
+                </div>
+            </header>
+
+            <!-- Metrics Overview -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <span class="stat-label">Total Events</span>
+                        <h3 class="stat-value" id="stat-total-events">0</h3>
+                    </div>
+                    <div class="stat-icon icon-purple">🎉</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <span class="stat-label">Total Attendees</span>
+                        <h3 class="stat-value" id="stat-total-attendees">0</h3>
+                    </div>
+                    <div class="stat-icon icon-blue">👥</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <span class="stat-label">Revenue Generated</span>
+                        <h3 class="stat-value" id="stat-revenue">$0</h3>
+                    </div>
+                    <div class="stat-icon icon-green">💰</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <span class="stat-label">Upcoming This Month</span>
+                        <h3 class="stat-value" id="stat-upcoming">0</h3>
+                    </div>
+                    <div class="stat-icon icon-orange">⏰</div>
+                </div>
+            </section>
+
+            <!-- Category Filter Tabs -->
+            <div class="filters-bar">
+                <div class="category-tabs" id="category-tabs">
+                    <button class="tab-btn active" data-category="all">All Events</button>
+                    <button class="tab-btn" data-category="Tech & Code">Tech & Code</button>
+                    <button class="tab-btn" data-category="Conferences">Conferences</button>
+                    <button class="tab-btn" data-category="Music & Art">Music & Art</button>
+                    <button class="tab-btn" data-category="Workshops">Workshops</button>
+                </div>
+
+                <select id="sort-select" class="sort-select">
+                    <option value="date-asc">Date: Soonest First</option>
+                    <option value="date-desc">Date: Latest First</option>
+                    <option value="popular">Most Popular</option>
+                </select>
+            </div>
+
+            <!-- Events Grid -->
+            <section class="events-section">
+                <div class="events-grid" id="events-grid">
+                    <!-- Event Cards populated via JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Create / Edit Event Modal -->
+    <div class="modal-backdrop" id="modal-create-event">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Event</h3>
+                <button class="modal-close" id="btn-close-modal">&times;</button>
+            </div>
+            <form id="form-create-event" class="modal-body">
+                <div class="form-group">
+                    <label for="event-title">Event Title *</label>
+                    <input type="text" id="event-title" required placeholder="e.g. AI & Full-Stack Tech Summit 2026">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-category">Category *</label>
+                        <select id="event-category" required>
+                            <option value="Tech & Code">Tech & Code</option>
+                            <option value="Conferences">Conferences</option>
+                            <option value="Music & Art">Music & Art</option>
+                            <option value="Workshops">Workshops</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-price">Ticket Price ($) *</label>
+                        <input type="number" id="event-price" min="0" value="0" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-date">Date & Time *</label>
+                        <input type="datetime-local" id="event-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-capacity">Max Capacity *</label>
+                        <input type="number" id="event-capacity" min="1" value="100" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-location">Venue / Location *</label>
+                    <input type="text" id="event-location" required placeholder="e.g. Tech Convention Center, San Francisco or Online Zoom">
+                </div>
+
+                <div class="form-group">
+                    <label for="event-description">Description</label>
+                    <textarea id="event-description" rows="3" placeholder="Provide details about speakers, schedule, or prerequisites..."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div class="modal-backdrop" id="modal-booking">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h3>🎟️ Ticket Confirmed!</h3>
+                <button class="modal-close" id="btn-close-booking">&times;</button>
+            </div>
+            <div class="modal-body" id="booking-modal-body">
+                <!-- Confirmed ticket details filled dynamically -->
+            </div>
+            <div class="modal-footer justify-center">
+                <button class="btn btn-primary" id="btn-finish-booking">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
