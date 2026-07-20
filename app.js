@@ -257,8 +257,8 @@ function initFaqAccordion() {
 /* Contact Form & Google Sheets Integration */
 const INQUIRIES_KEY = 'gracengather_inquiries';
 
-// Live Deployed Google Apps Script Web App Endpoint
-let GOOGLE_SHEETS_WEB_APP_URL = localStorage.getItem('gracengather_google_sheet_url') || 'https://script.google.com/macros/s/AKfycbw1hxAw1Iyd7GsP5bGR_em396Wkr4e31R392wIWPiuUq_opahM7IrR_laSiXPV785JG/exec';
+// Live Deployed Web App URL for Grace N Gather Events
+let GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw1hxAwllyd7GsP5bGR_em396Wkr4e3lR39ZwIWPIuUq_opahM7IrR_1aSIxPV785JG/exec';
 
 function saveInquiry(inquiry) {
     const existing = JSON.parse(localStorage.getItem(INQUIRIES_KEY) || '[]');
