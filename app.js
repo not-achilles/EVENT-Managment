@@ -256,6 +256,23 @@ function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
+    const selectType = document.getElementById('c-type');
+    const otherGroup = document.getElementById('other-event-group');
+    const otherInput = document.getElementById('c-other-type');
+
+    if (selectType && otherGroup && otherInput) {
+        selectType.addEventListener('change', () => {
+            if (selectType.value === 'Other') {
+                otherGroup.style.display = 'block';
+                otherInput.required = true;
+                otherInput.focus();
+            } else {
+                otherGroup.style.display = 'none';
+                otherInput.required = false;
+            }
+        });
+    }
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -267,7 +284,10 @@ function initContactForm() {
         const name = document.getElementById('c-name').value;
         const email = document.getElementById('c-email').value;
         const phone = document.getElementById('c-phone').value;
-        const eventType = document.getElementById('c-type').value;
+        let eventType = document.getElementById('c-type').value;
+        if (eventType === 'Other' && otherInput && otherInput.value.trim()) {
+            eventType = 'Other: ' + otherInput.value.trim();
+        }
         const message = document.getElementById('c-message').value;
 
         const newInquiry = {
