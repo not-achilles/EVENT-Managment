@@ -171,6 +171,10 @@
                 <input type="password" id="page-pass" class="login-input" placeholder="Enter password" required autocomplete="current-password">
             </div>
 
+            <div id="login-error" style="display: none; color: #FF4D4D; font-size: 0.85rem; margin-top: 1rem; background: rgba(255, 77, 77, 0.1); border: 1px solid rgba(255, 77, 77, 0.3); padding: 0.6rem; border-radius: var(--radius-sm);">
+                ❌ Invalid Username or Password.
+            </div>
+
             <button type="submit" class="login-btn">Login to Dashboard ✦</button>
         </form>
 
@@ -184,13 +188,14 @@
             e.preventDefault();
             const user = document.getElementById('page-user').value.trim();
             const pass = document.getElementById('page-pass').value.trim();
+            const errDiv = document.getElementById('login-error');
 
             if (user === 'notachilles' && pass === 'Pihu@2008') {
                 sessionStorage.setItem('gng_preview_unlocked', 'true');
-                alert('🔓 Admin Login Successful! Redirecting to full site...');
+                if (errDiv) errDiv.style.display = 'none';
                 window.location.href = 'index.html';
             } else {
-                alert('❌ Invalid Username or Password.');
+                if (errDiv) errDiv.style.display = 'block';
             }
         });
     </script>

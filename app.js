@@ -309,9 +309,32 @@ function initContactForm() {
         submitBtn.innerHTML = originalBtnText;
         submitBtn.disabled = false;
 
-        alert(`🪷 Thank you, ${name}!\n\nYour event consultation request for "${eventType}" has been successfully submitted to Grace N Gather Events.\nOur Executive Concierge team will review your details and reach out to ${phone} / ${email} within 24 hours.`);
+        showToast(`Thank you, ${name}! Your consultation request has been received. Our executive concierge will reach out within 24 hours.`, '🪷');
         form.reset();
     });
+}
+
+// Global Luxury Toast Notification Helper (Replaces Browser Alerts)
+function showToast(message, icon = '🪷') {
+    let container = document.getElementById('gng-toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'gng-toast-container';
+        container.className = 'gng-toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'gng-toast';
+    toast.innerHTML = `<span class="gng-toast-icon">${icon}</span><span>${message}</span>`;
+    container.appendChild(toast);
+
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+    }, 4500);
 }
 
 // Allow setting Google Sheets Web App URL dynamically from Console
@@ -442,7 +465,7 @@ function initComingSoonForm() {
             } catch (err) {}
         }
 
-        alert(`🪷 Thank you!\n\nYour email (${email}) has been registered for VIP Launch Access with Grace N Gather Events.`);
+        showToast(`Thank you! Your email (${email}) has been registered for VIP Launch Access with Grace N Gather Events.`, '🪷');
         form.reset();
     });
 }
