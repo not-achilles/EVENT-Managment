@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Event Divisions & Services | Grace N Gather Events</title>
+    <meta name="description" content="Explore our 16 luxury event management divisions, from Royal Destination Weddings to Corporate Summits and Stage Architecture.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <!-- Launching Soon Teaser Overlay (Public Visitors) -->
+    <div class="coming-soon-overlay" id="coming-soon-overlay" style="display: none;">
+        <div class="cs-bg-darkener"></div>
+        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1920&q=80" alt="Background Luxury Gala" class="coming-soon-bg">
+        
+        <div></div>
+
+        <div class="coming-soon-container">
+            <div class="cs-logo-wrapper">
+                <img src="/images/logo.png" alt="Grace N Gather Events Logo" class="cs-logo">
+            </div>
+
+            <div class="cs-tag">GRAND PRIVATE UNVEILING</div>
+
+            <h1 class="cs-title">Moments Of <span class="gold-text">Perfection</span></h1>
+            
+            <p class="cs-desc">
+                India’s premier luxury event house is preparing a private unveiling for bespoke destination weddings, royal Mandap stage architectures, and high-profile corporate galas.
+            </p>
+
+            <!-- Symmetrical Countdown Timer -->
+            <div class="coming-soon-timer">
+                <div class="timer-box"><span class="timer-number" id="timer-days">28</span><span class="timer-label">DAYS</span></div>
+                <div class="timer-box"><span class="timer-number" id="timer-hours">14</span><span class="timer-label">HOURS</span></div>
+                <div class="timer-box"><span class="timer-number" id="timer-mins">36</span><span class="timer-label">MINS</span></div>
+                <div class="timer-box"><span class="timer-number" id="timer-secs">42</span><span class="timer-label">SECS</span></div>
+            </div>
+
+            <!-- Symmetrical Inline VIP Form -->
+            <form class="cs-form" id="cs-form">
+                <input type="email" id="cs-email" class="cs-input" placeholder="Enter your email for private launch invitation..." required>
+                <button type="submit" class="cs-btn">Request Invitation ✦</button>
+            </form>
+        </div>
+
+        <div class="cs-footer">
+            <div class="cs-footer-address">Worli Sea Face, Penthouse Suite 18, Mumbai</div>
+            <div class="cs-footer-phone">
+                Concierge Direct: <a href="tel:+919820055599" class="cs-phone-link">+91 98200 55599</a>
+            </div>
+            <div class="cs-footer-copy">
+                &copy; 2026 Grace N Gather Events Pvt. Ltd. &nbsp;|&nbsp; 
+                <a href="/login" class="cs-admin-link">Admin Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="/" class="brand-logo" aria-label="Grace N Gather Events">
+                <img src="/images/logo.png" alt="Grace N Gather Events Logo" class="brand-logo-img">
+            </a>
+
+            <nav class="nav-menu">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/#about" class="nav-link">About</a></li>
+                    <li><a href="/services" class="nav-link active">Services</a></li>
+                    <li><a href="/gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="/#reviews" class="nav-link">Client Reviews</a></li>
+                    <li><a href="/#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="/#contact" class="btn btn-primary nav-cta">Book Your Event</a>
+                <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Header Banner -->
+    <section class="section-padding" style="background: linear-gradient(180deg, #0D0D0D 0%, #141418 100%); padding-top: 10rem; padding-bottom: 4rem;">
+        <div class="container text-center">
+            <span class="section-tag">Bespoke Divisions</span>
+            <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: 'Playfair Display', serif; margin-top: 0.5rem;">Our Luxury <span class="gold-text">Services</span></h1>
+            <p style="color: var(--text-muted); max-width: 650px; margin: 1rem auto 0 auto; font-size: 1.15rem;">
+                Explore our 16 specialized event divisions engineered to turn weddings, galas, and corporate summits into unforgettable royal experiences.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Filter Tabs & Grid -->
+    <section class="section-padding" style="padding-top: 2rem;">
+        <div class="container">
+            
+            <!-- Category Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All Divisions (16)</button>
+                <button class="filter-btn" data-filter="weddings">Weddings & Ceremonies</button>
+                <button class="filter-btn" data-filter="corporate">Corporate & Galas</button>
+                <button class="filter-btn" data-filter="design">Design & Architecture</button>
+                <button class="filter-btn" data-filter="entertainment">Entertainment & Shows</button>
+            </div>
+
+            <!-- Full 16 Services Grid -->
+            <div class="services-grid" id="full-services-container">
+                <!-- Populated dynamically by app.js -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Banner Section -->
+    <section class="section-padding" style="background: var(--bg-surface); text-align: center; border-top: 1px solid var(--border-subtle);">
+        <div class="container" style="max-width: 750px;">
+            <span class="section-tag">Start Planning Today</span>
+            <h2 style="margin-top: 0.75rem;">Ready To Host An <span class="gold-text">Extraordinary</span> Event?</h2>
+            <p style="color: var(--text-muted); margin: 1rem 0 2rem 0; font-size: 1.1rem;">
+                Connect with our executive concierge team for a private consultation and custom event design proposal.
+            </p>
+            <a href="/#contact" class="btn btn-primary">Schedule VIP Consultation ✦</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="brand-logo" aria-label="Grace N Gather Events">
+                        <img src="/images/logo.png" alt="Grace N Gather Events Logo" class="brand-logo-img">
+                    </a>
+                    <p>India's premier luxury event house creating royal palace weddings, corporate galas, and bespoke celebrations with timeless grandeur.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#about">About Us</a></li>
+                        <li><a href="/services">Our Services</a></li>
+                        <li><a href="/gallery">Portfolio Gallery</a></li>
+                        <li><a href="/#contact">Book Consultation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Destinations</h4>
+                    <ul class="footer-links">
+                        <li><a href="/services">Udaipur City Palace</a></li>
+                        <li><a href="/services">Jaipur Heritage Forts</a></li>
+                        <li><a href="/services">Goa Beach Resorts</a></li>
+                        <li><a href="/services">Mumbai & Delhi Summits</a></li>
+                        <li><a href="/services">International Destinations</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Contact Concierge</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+919820055599">+91 98200 55599</a></li>
+                        <li><a href="mailto:concierge@gracengather.com">concierge@gracengather.com</a></li>
+                        <li><span style="color: var(--text-muted);">Penthouse Suite 18, Worli Sea Face, Mumbai</span></li>
+                        <li><a href="/login" class="cs-admin-link">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 Grace N Gather Events Pvt. Ltd. All rights reserved.</div>
+                <div>Designed for Luxury Indian Celebrations ✦</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+        <a href="https://wa.me/919820055599" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">💬</a>
+    </div>
+
+    <!-- Main JavaScript Engine -->
+    <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Grace N Gather Events</title>
+    <meta name="description" content="Administrator Login Portal for Grace N Gather Events">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            background: #0D0D0D;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .login-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(13, 13, 13, 0.7) 0%, rgba(8, 8, 10, 0.96) 100%);
+            z-index: 2;
+        }
+
+        .login-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.22;
+            z-index: 1;
+            filter: blur(4px);
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+            background: rgba(20, 20, 24, 0.88);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2.5rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85);
+            text-align: center;
+        }
+
+        .login-logo {
+            height: 65px;
+            width: auto;
+            margin-bottom: 1.8rem;
+            filter: drop-shadow(0 4px 14px rgba(212, 175, 55, 0.45));
+        }
+
+        .login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 0.4rem;
+        }
+
+        .login-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .login-form-group {
+            text-align: left;
+            margin-bottom: 1.4rem;
+        }
+
+        .login-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .login-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1.1rem;
+            color: #FFFFFF;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-input:focus {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: var(--accent-gradient);
+            color: #0D0D0D;
+            font-weight: 700;
+            border: none;
+            padding: 0.95rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .login-back-link {
+            display: inline-block;
+            margin-top: 1.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .login-back-link:hover {
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-bg-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1920&q=80" alt="Background" class="login-bg-image">
+
+    <div class="login-card">
+        <a href="/">
+            <img src="/images/logo.png" alt="Grace N Gather Events Logo" class="login-logo">
+        </a>
+        <h1 class="login-title">Admin Login</h1>
+        <p class="login-sub">Enter administrator credentials to unlock full site access.</p>
+
+        <form id="standalone-login-form">
+            <div class="login-form-group">
+                <label for="page-user" class="login-label">Username</label>
+                <input type="text" id="page-user" class="login-input" placeholder="Enter username" required autocomplete="username">
+            </div>
+
+            <div class="login-form-group">
+                <label for="page-pass" class="login-label">Password</label>
+                <input type="password" id="page-pass" class="login-input" placeholder="Enter password" required autocomplete="current-password">
+            </div>
+
+            <div id="login-error" style="display: none; color: #FF4D4D; font-size: 0.85rem; margin-top: 1rem; background: rgba(255, 77, 77, 0.1); border: 1px solid rgba(255, 77, 77, 0.3); padding: 0.6rem; border-radius: var(--radius-sm);">
+                ❌ Invalid Username or Password.
+            </div>
+
+            <button type="submit" class="login-btn">Login to Dashboard ✦</button>
+        </form>
+
+        <div>
+            <a href="/" class="login-back-link">← Return to Main Site</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('standalone-login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('page-user').value.trim();
+            const pass = document.getElementById('page-pass').value.trim();
+            const errDiv = document.getElementById('login-error');
+
+            if (user === 'notachilles' && pass === 'Pihu@2008') {
+                sessionStorage.setItem('gng_preview_unlocked', 'true');
+                if (errDiv) errDiv.style.display = 'none';
+                window.location.href = '/';
+            } else {
+                if (errDiv) errDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
