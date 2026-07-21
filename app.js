@@ -354,15 +354,15 @@ function initComingSoonMode() {
     const overlay = document.getElementById('coming-soon-overlay');
     if (!overlay) return;
 
-    // STRICT SECURITY: URL parameter bypasses (?preview=true, ?admin=true) are completely REMOVED.
-    // Only valid login from login.html sets sessionStorage and unlocks full site!
     const isUnlockedSession = sessionStorage.getItem('gng_preview_unlocked') === 'true';
 
     if (isUnlockedSession) {
         overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
         showAdminBadge();
     } else {
         overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
         initCountdownTimer();
         initComingSoonForm();
     }
