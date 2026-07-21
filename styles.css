@@ -192,10 +192,10 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
 }
 
 .brand-logo-img {
-    height: 62px;
+    height: 70px;
     width: auto;
     display: block;
-    filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.3));
+    filter: drop-shadow(0 2px 12px rgba(255, 225, 120, 0.35));
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
