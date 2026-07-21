@@ -700,7 +700,7 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
 }
 
 /* ==========================================================================
-   LAUNCHING SOON / UNDER CONSTRUCTION OVERLAY & ADMIN PREVIEW MODE
+   LAUNCHING SOON / UNDER CONSTRUCTION OVERLAY & ELEGANT ADMIN LOGIN
    ========================================================================== */
 .coming-soon-overlay {
     position: fixed;
@@ -708,7 +708,7 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #08080A;
+    background: #0D0D0D;
     z-index: 999999;
     display: flex;
     flex-direction: column;
@@ -719,6 +719,16 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
     text-align: center;
 }
 
+.cs-bg-darkener {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(13, 13, 13, 0.75) 0%, rgba(8, 8, 10, 0.95) 100%);
+    z-index: 2;
+}
+
 .coming-soon-bg {
     position: absolute;
     top: 0;
@@ -726,45 +736,92 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.22;
+    opacity: 0.25;
     z-index: 1;
-    filter: blur(4px);
+    filter: blur(5px);
     transform: scale(1.05);
 }
 
-.coming-soon-content {
+.coming-soon-container {
     position: relative;
     z-index: 10;
-    max-width: 750px;
+    width: 100%;
+    max-width: 820px;
     margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.coming-soon-logo {
-    height: 85px;
+.cs-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.cs-logo {
+    height: 90px;
     width: auto;
-    margin-bottom: 2rem;
-    filter: drop-shadow(0 4px 16px rgba(212, 175, 55, 0.4));
+    display: block;
+    filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.45));
+}
+
+.cs-tag {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid var(--border-gold);
+    border-radius: 50px;
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.cs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #FFFFFF;
+    margin-bottom: 1.2rem;
+}
+
+.cs-desc {
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 auto 2.5rem auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .coming-soon-timer {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1.5rem;
-    margin: 2.5rem 0;
+    margin-bottom: 2.8rem;
+    width: 100%;
 }
 
 .timer-box {
-    background: rgba(212, 175, 55, 0.06);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-gold);
-    padding: 1rem 1.2rem;
+    padding: 1.2rem 1rem;
     border-radius: var(--radius-md);
-    min-width: 85px;
-    backdrop-filter: blur(10px);
+    min-width: 95px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 .timer-number {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 700;
     color: var(--accent-gold);
     display: block;
@@ -772,59 +829,127 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
 }
 
 .timer-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--text-muted);
-    margin-top: 0.4rem;
+    margin-top: 0.5rem;
     display: block;
 }
 
-.coming-soon-form {
-    display: flex;
-    gap: 0.75rem;
-    max-width: 520px;
-    margin: 2rem auto 0 auto;
-}
-
-@media (max-width: 640px) {
-    .coming-soon-form {
-        flex-direction: column;
-    }
-    .coming-soon-timer {
-        gap: 0.75rem;
-    }
-    .timer-box {
-        min-width: 70px;
-        padding: 0.8rem 0.6rem;
-    }
-    .timer-number {
-        font-size: 1.6rem;
-    }
-}
-
-.admin-preview-badge {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(212, 175, 55, 0.95);
-    color: #08080A;
-    font-weight: 700;
-    font-size: 0.82rem;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    z-index: 1000000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    cursor: pointer;
+.cs-form {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    width: 100%;
+    max-width: 580px;
+    background: rgba(20, 20, 24, 0.85);
+    border: 1px solid var(--border-subtle);
+    padding: 0.4rem;
+    border-radius: 50px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+.cs-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.8rem 1.4rem;
+    color: #FFFFFF;
+    font-size: 0.95rem;
+}
+
+.cs-input::placeholder {
+    color: var(--text-muted);
+}
+
+.cs-btn {
+    background: var(--accent-gradient);
+    color: #0D0D0D;
+    font-weight: 700;
+    border: none;
+    padding: 0.85rem 1.8rem;
+    border-radius: 50px;
+    cursor: pointer;
+    white-space: nowrap;
     transition: all 0.3s ease;
 }
 
-.admin-preview-badge:hover {
-    transform: scale(1.05);
-    background: #FFFFFF;
+.cs-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
+}
+
+.cs-footer {
+    position: relative;
+    z-index: 10;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    width: 100%;
+}
+
+.cs-admin-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.cs-admin-link:hover {
+    color: var(--accent-gold);
+}
+
+/* Admin Login Modal */
+.admin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 8, 10, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.admin-modal.active {
+    display: flex;
+}
+
+.admin-modal-card {
+    background: #141418;
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.admin-modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.admin-modal-close:hover {
+    color: #FFFFFF;
 }
 
 /* Testimonials & Stats */

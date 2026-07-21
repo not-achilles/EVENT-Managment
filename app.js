@@ -368,19 +368,40 @@ function initComingSoonMode() {
         initComingSoonForm();
     }
 
-    // Discreet Admin Unlocking
-    const unlockBtn = document.getElementById('admin-unlock-trigger');
-    if (unlockBtn) {
-        unlockBtn.addEventListener('click', (e) => {
+    // Admin Login Modal Handling
+    const adminLink = document.getElementById('admin-unlock-trigger');
+    const modal = document.getElementById('admin-modal');
+    const closeBtn = document.getElementById('admin-modal-close');
+    const loginForm = document.getElementById('admin-login-form');
+
+    if (adminLink && modal) {
+        adminLink.addEventListener('click', (e) => {
             e.preventDefault();
-            const pin = prompt('🔑 Enter VIP Admin Passcode:');
-            if (pin === '1234' || pin === 'admin' || pin === 'grace2026') {
+            modal.classList.add('active');
+        });
+    }
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value.trim();
+
+            if (user === 'notachilles' && pass === 'Pihu@2008') {
                 sessionStorage.setItem('gng_preview_unlocked', 'true');
+                if (modal) modal.classList.remove('active');
                 overlay.style.display = 'none';
                 showAdminBadge();
-                alert('🔓 VIP Admin Preview Mode Unlocked!');
-            } else if (pin !== null) {
-                alert('❌ Invalid Passcode.');
+                alert('🔓 Admin Login Successful! Website preview unlocked.');
+            } else {
+                alert('❌ Invalid Username or Password.');
             }
         });
     }

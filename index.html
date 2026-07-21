@@ -17,51 +17,81 @@
 
     <!-- Launching Soon Teaser Overlay (Public Visitors) -->
     <div class="coming-soon-overlay" id="coming-soon-overlay" style="display: none;">
+        <div class="cs-bg-darkener"></div>
         <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1920&q=80" alt="Background Luxury Gala" class="coming-soon-bg">
         
         <div></div>
 
-        <div class="coming-soon-content">
-            <img src="images/logo.png" alt="Grace N Gather Events Logo" class="coming-soon-logo">
-            <span class="section-tag">Grand Private Unveil</span>
-            <h1 style="margin-top: 0.75rem;">Moments Of <span class="gold-text">Perfection</span></h1>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 0 auto; font-size: 1.15rem;">
-                India's premier luxury event house is preparing a private unveiling for bespoke destination weddings, royal Mandap architectures, and high-profile galas.
+        <div class="coming-soon-container">
+            <div class="cs-logo-wrapper">
+                <img src="images/logo.png" alt="Grace N Gather Events Logo" class="cs-logo">
+            </div>
+
+            <div class="cs-tag">GRAND PRIVATE UNVEILING</div>
+
+            <h1 class="cs-title">Moments Of <span class="gold-text">Perfection</span></h1>
+            
+            <p class="cs-desc">
+                India’s premier luxury event house is preparing a private unveiling for bespoke destination weddings, royal Mandap architectures, and high-profile corporate galas.
             </p>
 
-            <!-- Live Countdown Timer -->
+            <!-- Symmetrical Countdown Timer -->
             <div class="coming-soon-timer">
                 <div class="timer-box">
                     <span class="timer-number" id="timer-days">28</span>
-                    <span class="timer-label">Days</span>
+                    <span class="timer-label">DAYS</span>
                 </div>
                 <div class="timer-box">
                     <span class="timer-number" id="timer-hours">14</span>
-                    <span class="timer-label">Hours</span>
+                    <span class="timer-label">HOURS</span>
                 </div>
                 <div class="timer-box">
                     <span class="timer-number" id="timer-mins">36</span>
-                    <span class="timer-label">Mins</span>
+                    <span class="timer-label">MINS</span>
                 </div>
                 <div class="timer-box">
                     <span class="timer-number" id="timer-secs">42</span>
-                    <span class="timer-label">Secs</span>
+                    <span class="timer-label">SECS</span>
                 </div>
             </div>
 
-            <!-- VIP Access Form -->
-            <form class="coming-soon-form" id="cs-form">
-                <input type="email" id="cs-email" class="form-input" placeholder="Enter your email for private launch invite..." required style="background: rgba(13,13,13,0.8);">
-                <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Request Invitation ✦</button>
+            <!-- Symmetrical Inline VIP Form -->
+            <form class="cs-form" id="cs-form">
+                <input type="email" id="cs-email" class="cs-input" placeholder="Enter your email for private launch invitation..." required>
+                <button type="submit" class="cs-btn">Request Invitation ✦</button>
             </form>
         </div>
 
-        <div style="position: relative; z-index: 10; font-size: 0.85rem; color: var(--text-muted);">
-            <div>Worli Sea Face, Penthouse Suite 18, Mumbai &nbsp;|&nbsp; <a href="tel:+919820055599" style="color: var(--accent-gold); text-decoration: none;">+91 98200 55599</a></div>
-            <div style="margin-top: 0.5rem;">
+        <div class="cs-footer">
+            <div>Worli Sea Face, Penthouse Suite 18, Mumbai &nbsp;•&nbsp; <a href="tel:+919820055599" style="color: var(--accent-gold); text-decoration: none;">+91 98200 55599</a></div>
+            <div style="margin-top: 0.6rem;">
                 &copy; 2026 Grace N Gather Events Pvt. Ltd. &nbsp;|&nbsp; 
-                <a href="#" id="admin-unlock-trigger" style="color: var(--text-muted); text-decoration: none;">🔑 VIP Admin Access</a>
+                <a href="#" id="admin-unlock-trigger" class="cs-admin-link">Admin Login</a>
             </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="admin-modal" id="admin-modal">
+        <div class="admin-modal-card">
+            <button class="admin-modal-close" id="admin-modal-close">&times;</button>
+            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                <img src="images/logo.png" alt="Grace N Gather" style="height: 48px;">
+            </div>
+            <h3 style="margin-bottom: 0.4rem; color: #FFFFFF; font-family: 'Playfair Display', serif;">Admin Login</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Enter administrator credentials to unlock website preview mode.</p>
+            
+            <form id="admin-login-form">
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Username</label>
+                    <input type="text" id="admin-user" class="form-input" placeholder="Username" required style="background: rgba(255,255,255,0.05); margin-top: 0.3rem;">
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 1.5rem;">
+                    <label style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Password</label>
+                    <input type="password" id="admin-pass" class="form-input" placeholder="Password" required style="background: rgba(255,255,255,0.05); margin-top: 0.3rem;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Unlock Preview ✦</button>
+            </form>
         </div>
     </div>
 
