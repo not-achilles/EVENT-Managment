@@ -2,6 +2,20 @@
    GRACE N GATHER EVENTS - LUXURY INDIAN EVENT MANAGEMENT ENGINE
    ========================================================================== */
 
+/* Automatic Clean URL Engine (Strips .html from address bar instantly) */
+(function cleanUrlBar() {
+    try {
+        if (window.location.pathname.endsWith('.html')) {
+            let cleanPath = window.location.pathname.replace(/\.html$/, '');
+            if (cleanPath.endsWith('/index')) {
+                cleanPath = cleanPath.replace(/\/index$/, '');
+            }
+            if (!cleanPath) cleanPath = '/';
+            window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+    } catch (e) {}
+})();
+
 // Indian Client Reviews Dataset
 const REVIEWS = [
     {
