@@ -382,26 +382,12 @@ function initComingSoonMode() {
     if (isUnlockedSession) {
         overlay.style.display = 'none';
         document.body.style.overflow = 'auto';
-        showAdminBadge();
     } else {
         overlay.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         initCountdownTimer();
         initComingSoonForm();
     }
-}
-
-function showAdminBadge() {
-    if (document.getElementById('admin-badge')) return;
-    const badge = document.createElement('div');
-    badge.id = 'admin-badge';
-    badge.className = 'admin-preview-badge';
-    badge.innerHTML = '🔓 Admin Preview Active (Click to Lock)';
-    badge.addEventListener('click', () => {
-        sessionStorage.removeItem('gng_preview_unlocked');
-        window.location.href = window.location.pathname;
-    });
-    document.body.appendChild(badge);
 }
 
 function initCountdownTimer() {
