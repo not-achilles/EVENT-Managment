@@ -24,10 +24,17 @@ const REVIEWS = [
     }
 ];
 
-let currentReviewIndex = 0;
+// Force scroll position to top at every page refresh
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+});
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
     initComingSoonMode();
     initScrollEffects();
     initHeroSlider();
