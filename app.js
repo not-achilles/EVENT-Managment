@@ -28,6 +28,7 @@ let currentReviewIndex = 0;
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
+    initComingSoonMode();
     initScrollEffects();
     initHeroSlider();
     
@@ -347,6 +348,122 @@ window.exportGraceNGatherCSV = function() {
     link.click();
     document.body.removeChild(link);
 };
+
+/* Coming Soon Mode & Admin Preview Unlocking */
+function initComingSoonMode() {
+    const overlay = document.getElementById('coming-soon-overlay');
+    if (!overlay) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const isParamPreview = urlParams.has('preview') || urlParams.has('admin') || urlParams.get('mode') === 'preview';
+    const isUnlockedSession = sessionStorage.getItem('gng_preview_unlocked') === 'true';
+
+    if (isParamPreview || isUnlockedSession) {
+        sessionStorage.setItem('gng_preview_unlocked', 'true');
+        overlay.style.display = 'none';
+        showAdminBadge();
+    } else {
+        overlay.style.display = 'flex';
+        initCountdownTimer();
+        initComingSoonForm();
+    }
+
+    // Discreet Admin Unlocking
+    const unlockBtn = document.getElementById('admin-unlock-trigger');
+    if (unlockBtn) {
+        unlockBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pin = prompt('🔑 Enter VIP Admin Passcode:');
+            if (pin === '1234' || pin === 'admin' || pin === 'grace2026') {
+                sessionStorage.setItem('gng_preview_unlocked', 'true');
+                overlay.style.display = 'none';
+                showAdminBadge();
+                alert('🔓 VIP Admin Preview Mode Unlocked!');
+            } else if (pin !== null) {
+                alert('❌ Invalid Passcode.');
+            }
+        });
+    }
+}
+
+function showAdminBadge() {
+    if (document.getElementById('admin-badge')) return;
+    const badge = document.createElement('div');
+    badge.id = 'admin-badge';
+    badge.className = 'admin-preview-badge';
+    badge.innerHTML = '🔓 Admin Preview Active (Click to Lock)';
+    badge.addEventListener('click', () => {
+        sessionStorage.removeItem('gng_preview_unlocked');
+        window.location.href = window.location.pathname;
+    });
+    document.body.appendChild(badge);
+}
+
+function initCountdownTimer() {
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 28);
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) return;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const dEl = document.getElementById('timer-days');
+        const hEl = document.getElementById('timer-hours');
+        const mEl = document.getElementById('timer-mins');
+        const sEl = document.getElementById('timer-secs');
+
+        if (dEl) dEl.textContent = String(days).padStart(2, '0');
+        if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+        if (mEl) mEl.textContent = String(minutes).padStart(2, '0');
+        if (sEl) sEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+}
+
+function initComingSoonForm() {
+    const form = document.getElementById('cs-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('cs-email').value;
+
+        const newInquiry = {
+            id: 'GNG-VIP-' + Math.random().toString(36).substring(2, 7).toUpperCase(),
+            timestamp: new Date().toLocaleString(),
+            name: 'VIP Early Access Request',
+            email: email,
+            phone: 'N/A',
+            eventType: 'VIP Launch Invitation',
+            message: 'Requested early access invitation on Launching Soon landing page.'
+        };
+
+        saveInquiry(newInquiry);
+
+        if (GOOGLE_SHEETS_WEB_APP_URL) {
+            try {
+                await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(newInquiry),
+                    mode: 'no-cors'
+                });
+            } catch (err) {}
+        }
+
+        alert(`🪷 Thank you!\n\nYour email (${email}) has been registered for VIP Launch Access with Grace N Gather Events.`);
+        form.reset();
+    });
+}
 
 /* Mobile Nav Drawer */
 function initMobileNav() {

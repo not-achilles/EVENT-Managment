@@ -699,6 +699,134 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
     cursor: pointer;
 }
 
+/* ==========================================================================
+   LAUNCHING SOON / UNDER CONSTRUCTION OVERLAY & ADMIN PREVIEW MODE
+   ========================================================================== */
+.coming-soon-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #08080A;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 1.5rem;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.coming-soon-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.22;
+    z-index: 1;
+    filter: blur(4px);
+    transform: scale(1.05);
+}
+
+.coming-soon-content {
+    position: relative;
+    z-index: 10;
+    max-width: 750px;
+    margin: auto 0;
+}
+
+.coming-soon-logo {
+    height: 85px;
+    width: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 4px 16px rgba(212, 175, 55, 0.4));
+}
+
+.coming-soon-timer {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+}
+
+.timer-box {
+    background: rgba(212, 175, 55, 0.06);
+    border: 1px solid var(--border-gold);
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius-md);
+    min-width: 85px;
+    backdrop-filter: blur(10px);
+}
+
+.timer-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    display: block;
+    line-height: 1;
+}
+
+.timer-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    display: block;
+}
+
+.coming-soon-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 520px;
+    margin: 2rem auto 0 auto;
+}
+
+@media (max-width: 640px) {
+    .coming-soon-form {
+        flex-direction: column;
+    }
+    .coming-soon-timer {
+        gap: 0.75rem;
+    }
+    .timer-box {
+        min-width: 70px;
+        padding: 0.8rem 0.6rem;
+    }
+    .timer-number {
+        font-size: 1.6rem;
+    }
+}
+
+.admin-preview-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(212, 175, 55, 0.95);
+    color: #08080A;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    z-index: 1000000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.admin-preview-badge:hover {
+    transform: scale(1.05);
+    background: #FFFFFF;
+}
+
 /* Testimonials & Stats */
 .stats-banner {
     background: var(--bg-surface);
