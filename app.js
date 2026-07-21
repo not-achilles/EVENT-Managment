@@ -349,17 +349,16 @@ window.exportGraceNGatherCSV = function() {
     document.body.removeChild(link);
 };
 
-/* Coming Soon Mode & Admin Preview Unlocking */
+/* Coming Soon Mode & Strict Admin Preview Unlocking */
 function initComingSoonMode() {
     const overlay = document.getElementById('coming-soon-overlay');
     if (!overlay) return;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const isParamPreview = urlParams.has('preview') || urlParams.has('admin') || urlParams.get('mode') === 'preview';
+    // STRICT SECURITY: URL parameter bypasses (?preview=true, ?admin=true) are completely REMOVED.
+    // Only valid login from login.html sets sessionStorage and unlocks full site!
     const isUnlockedSession = sessionStorage.getItem('gng_preview_unlocked') === 'true';
 
-    if (isParamPreview || isUnlockedSession) {
-        sessionStorage.setItem('gng_preview_unlocked', 'true');
+    if (isUnlockedSession) {
         overlay.style.display = 'none';
         showAdminBadge();
     } else {
