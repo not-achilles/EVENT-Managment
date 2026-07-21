@@ -191,6 +191,19 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
     color: var(--text-primary);
 }
 
+.brand-logo-img {
+    height: 54px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.25));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.brand-logo:hover .brand-logo-img {
+    transform: scale(1.03);
+    filter: drop-shadow(0 4px 14px rgba(212, 175, 55, 0.45));
+}
+
 .brand-symbol {
     font-size: 1.8rem;
     color: var(--accent-gold);
