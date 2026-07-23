@@ -432,8 +432,7 @@ function initComingSoonMode() {
 }
 
 function initCountdownTimer() {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 28);
+    const targetDate = new Date("August 25, 2026 00:00:00").getTime();
 
     function updateTimer() {
         const now = new Date().getTime();

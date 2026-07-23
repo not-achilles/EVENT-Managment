@@ -373,6 +373,12 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; }
     text-decoration: none;
 }
 
+@media (max-width: 1024px) or (max-height: 800px) {
+    .scroll-indicator {
+        display: none !important;
+    }
+}
+
 .scroll-mouse {
     width: 24px;
     height: 38px;
