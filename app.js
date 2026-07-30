@@ -38,6 +38,8 @@ const REVIEWS = [
     }
 ];
 
+let currentReviewIndex = 0;
+
 // Force scroll position to top at every page refresh
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
