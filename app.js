@@ -421,10 +421,10 @@ function initComingSoonMode() {
     const isUnlockedSession = sessionStorage.getItem('gng_preview_unlocked') === 'true';
 
     if (isUnlockedSession) {
-        overlay.style.display = 'none';
+        document.body.classList.add('site-unlocked');
         document.body.style.overflow = 'auto';
     } else {
-        overlay.style.display = 'flex';
+        document.body.classList.remove('site-unlocked');
         document.body.style.overflow = 'hidden';
         initCountdownTimer();
         initComingSoonForm();
